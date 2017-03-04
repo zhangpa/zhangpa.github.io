@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.19" />
+  <meta name="author" content="Patrick M Zhang">
+  <meta name="description" content="Undergraduate Student">
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/highlight.min.css">
+    
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/academicons.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700|Merriweather|Roboto+Mono">
+  <link rel="stylesheet" href="/css/hugo-academic.css">
+  
+
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Patrick Zhang">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Patrick Zhang">
+
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/apple-touch-icon.png">
+
+  <link rel="canonical" href="/post/InClass/">
+
+  
+
+  <title>February 28, 2017 - In-Class Project | Patrick Zhang</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Patrick Zhang</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#teaching">
+            
+            <span>Teaching</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+          </a>
+        </li>
+
+        
+        
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+  <div class="article-container">
+    <h1 itemprop="name">February 28, 2017 - In-Class Project</h1>
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Sat, Feb 10, 1017
+    </time>
+  </span>
+
+  
+
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2fInClass%2f"
+         target="_blank">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=February%2028%2c%202017%20-%20In-Class%20Project&amp;url=%2fpost%2fInClass%2f"
+         target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fInClass%2f&amp;title=February%2028%2c%202017%20-%20In-Class%20Project"
+         target="_blank">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fInClass%2f&amp;title=February%2028%2c%202017%20-%20In-Class%20Project"
+         target="_blank">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=February%2028%2c%202017%20-%20In-Class%20Project&amp;body=%2fpost%2fInClass%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    <div class="article-style" itemprop="articleBody">
+      <ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>ckm_nodes &lt;- read.csv(file = &quot;ckm_nodes.csv&quot;)
+
+head(ckm_nodes)</code></pre>
+<pre><code>##     city adoption_date medical_school attend_meetings medical_journals
+## 1 Peoria             1     1920--1929       specialty                9
+## 2 Peoria            12          1945+            none                5
+## 3 Peoria             8     1935--1939         general                7
+## 4 Peoria             9     1940--1944         general                6
+## 5 Peoria             9     1935--1939         general                4
+## 6 Peoria            10     1930--1934            none                7
+##   free_time_with discuss_medicine_socially club_with_drs
+## 1    non-doctors                        no            no
+## 2        doctors                       yes            no
+## 3        doctors                        no            no
+## 4    non-doctors                        no            no
+## 5    non-doctors                       yes            no
+## 6          split                       yes            no
+##   drs_among_three_best_friends practicing_here office_visits_per_week
+## 1                            0       20+ years               101--150
+## 2                            3         1- year                76--100
+## 3                            2    10--20 years                76--100
+## 4                            0     5--10 years                 51--75
+## 5                            1    10--20 years                 51--75
+## 6                            0    10--20 years               101--150
+##       proximity_to_other_drs    specialty
+## 1     in_building_and_office pediatrician
+## 2     in_building_and_office           GP
+## 3 in_building_but_not_office    internist
+## 4     in_building_and_office           GP
+## 5 in_building_but_not_office           GP
+## 6     in_building_and_office    internist</code></pre>
+<pre class="r"><code>dim(ckm_nodes)[1]</code></pre>
+<pre><code>## [1] 246</code></pre>
+<pre class="r"><code>dim(ckm_nodes)[2]</code></pre>
+<pre><code>## [1] 13</code></pre>
+<pre class="r"><code>colnames(ckm_nodes)[1:2]</code></pre>
+<pre><code>## [1] &quot;city&quot;          &quot;adoption_date&quot;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code># install.packages(&quot;plyr&quot;)
+library(&#39;plyr&#39;)
+names(which.max(table(ckm_nodes$adoption_date)))</code></pre>
+<pre><code>## [1] &quot;Inf&quot;</code></pre>
+<pre class="r"><code>count(ckm_nodes, &#39;adoption_date&#39;)</code></pre>
+<pre><code>##    adoption_date freq
+## 1              1   11
+## 2              2    9
+## 3              3    9
+## 4              4   11
+## 5              5   11
+## 6              6   11
+## 7              7   13
+## 8              8    7
+## 9              9    4
+## 10            10    1
+## 11            11    5
+## 12            12    3
+## 13            13    3
+## 14            14    4
+## 15            15    4
+## 16            16    2
+## 17            17    1
+## 18           Inf   16
+## 19            NA  121</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code># Only include rows in which the adoption date is not NA
+cleaned_nodes &lt;- ckm_nodes[which(!is.na(ckm_nodes$adoption_date)),]
+
+dim(cleaned_nodes)[1]</code></pre>
+<pre><code>## [1] 125</code></pre>
+<pre class="r"><code>head(cleaned_nodes)</code></pre>
+<pre><code>##     city adoption_date medical_school attend_meetings medical_journals
+## 1 Peoria             1     1920--1929       specialty                9
+## 2 Peoria            12          1945+            none                5
+## 3 Peoria             8     1935--1939         general                7
+## 4 Peoria             9     1940--1944         general                6
+## 5 Peoria             9     1935--1939         general                4
+## 6 Peoria            10     1930--1934            none                7
+##   free_time_with discuss_medicine_socially club_with_drs
+## 1    non-doctors                        no            no
+## 2        doctors                       yes            no
+## 3        doctors                        no            no
+## 4    non-doctors                        no            no
+## 5    non-doctors                       yes            no
+## 6          split                       yes            no
+##   drs_among_three_best_friends practicing_here office_visits_per_week
+## 1                            0       20+ years               101--150
+## 2                            3         1- year                76--100
+## 3                            2    10--20 years                76--100
+## 4                            0     5--10 years                 51--75
+## 5                            1    10--20 years                 51--75
+## 6                            0    10--20 years               101--150
+##       proximity_to_other_drs    specialty
+## 1     in_building_and_office pediatrician
+## 2     in_building_and_office           GP
+## 3 in_building_but_not_office    internist
+## 4     in_building_and_office           GP
+## 5 in_building_but_not_office           GP
+## 6     in_building_and_office    internist</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>adopters &lt;- function(month, not.yet = FALSE) {
+  # Create vector of logicals with length equalling the number of rows in cleaned_nodes
+  vec &lt;- vector(mode = &quot;logical&quot;, length = dim(cleaned_nodes)[1])
+  if (not.yet == FALSE) {
+    # For each row (doctor) in the cleaned data
+    for (i in 1:dim(cleaned_nodes)[1]) {
+      # True/False if adopted during month
+      if (cleaned_nodes$adoption_date[i] == month) {
+        vec[i] = TRUE
+      } else {
+        vec[i] = FALSE
+      } 
+    }
+  } else {
+    for (i in 1:dim(cleaned_nodes)[1]) {
+      # True/False if adopted after month or never adopted
+      if (cleaned_nodes$adoption_date[i] &gt; month || is.infinite(cleaned_nodes$adoption_date[i])) {
+        vec[i] = TRUE
+      } else {
+        vec[i] = FALSE
+      } 
+    }
+  }
+  return(vec)
+}
+length(which(adopters(2)==TRUE))</code></pre>
+<pre><code>## [1] 9</code></pre>
+<pre class="r"><code>length(which(adopters(14, TRUE)==TRUE))</code></pre>
+<pre><code>## [1] 23</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>ckm_network = read.table(&quot;ckm_network.dat&quot;)
+# Indices for which the adoption date is not NA
+keep &lt;- which(!is.na(ckm_nodes$adoption_date))
+# Data set including only rows and columns with kept indices
+cleaned_network &lt;- ckm_network[keep,]
+cleaned_network &lt;- cleaned_network[,keep]
+
+dim(cleaned_network)[1]</code></pre>
+<pre><code>## [1] 125</code></pre>
+<pre class="r"><code>dim(cleaned_network)[2]</code></pre>
+<pre><code>## [1] 125</code></pre>
+<pre class="r"><code>head(cleaned_network)</code></pre>
+<pre><code>##   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20
+## 1  0  0  0  0  0  0  0  1  0   0   0   0   0   0   0   0   0   0   0   0
+## 2  0  0  0  0  0  0  0  0  0   0   1   0   0   0   0   0   0   0   0   0
+## 3  0  0  0  0  0  0  0  0  1   0   0   0   0   1   0   1   0   0   0   1
+## 4  0  0  0  0  0  0  1  0  0   0   0   0   0   0   0   0   0   0   0   0
+## 5  0  0  0  0  0  0  0  0  0   1   0   1   0   0   1   0   0   0   0   0
+## 6  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0
+##   V21 V22 V23 V24 V25 V26 V27 V28 V29 V30 V31 V32 V33 V34 V35 V36 V37 V38
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   1   0   1   0   1   0   1   0   1   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   1
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   1   0   1   0   0   0   0   0   0   0
+##   V39 V58 V70 V72 V73 V74 V75 V76 V77 V78 V79 V80 V81 V82 V91 V92 V93 V94
+## 1   0   1   0   0   0   0   0   0   0   1   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+##   V95 V96 V97 V98 V105 V108 V119 V121 V122 V123 V124 V125 V126 V127 V128
+## 1   0   0   0   0    0    0    0    0    0    0    0    0    0    0    0
+## 2   0   0   0   1    0    0    0    0    0    0    0    0    0    0    0
+## 3   0   0   0   0    0    0    0    0    0    0    0    0    0    0    0
+## 4   0   0   0   0    0    0    0    0    0    0    0    0    0    0    0
+## 5   0   0   0   0    0    0    0    0    0    0    0    0    0    0    0
+## 6   0   0   0   0    0    0    0    0    0    0    0    0    0    0    0
+##   V129 V130 V131 V132 V133 V134 V135 V136 V137 V151 V152 V153 V154 V155
+## 1    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 2    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 3    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 4    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 5    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 6    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+##   V156 V168 V169 V170 V171 V172 V173 V174 V175 V176 V177 V178 V179 V180
+## 1    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 2    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 3    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 4    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 5    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 6    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+##   V181 V182 V195 V196 V197 V198 V199 V200 V212 V213 V214 V215 V216 V217
+## 1    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 2    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 3    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 4    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 5    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 6    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+##   V218 V219 V220 V221 V222 V223 V224 V225 V226 V227 V229 V241
+## 1    0    0    0    0    0    0    0    0    0    0    0    0
+## 2    0    0    0    0    0    0    0    0    0    0    0    0
+## 3    0    0    0    0    0    0    0    0    0    0    0    0
+## 4    0    0    0    0    0    0    0    0    0    0    0    0
+## 5    0    0    0    0    0    0    0    0    0    0    0    0
+## 6    0    0    0    0    0    0    0    0    0    0    0    0</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code># Sums each row of cleaned_network --&gt; number of contacts for each doctor
+contacts &lt;- unname(apply(cleaned_network, 1, sum))
+
+contacts[41]</code></pre>
+<pre><code>## [1] 3</code></pre>
+<p>PART 2 7a.</p>
+<pre class="r"><code>count_peer_pressure &lt;- function(index, month) {
+  # Indices for which doctors started prescribing at month or earlier
+  prescribe &lt;- which(cleaned_nodes$adoption_date &lt;= month)
+  # Table of doctors who adopted before month and their contacts
+  docs &lt;- cleaned_network[,prescribe]
+  # Counts number of contacts
+  peers &lt;- unname(apply(docs, 1, sum))
+  # Number of contacts for doctor at index number
+  peers[index]
+}
+count_peer_pressure(37, 5)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<p>7b.</p>
+<pre class="r"><code>prop_peer_pressure &lt;- function(index, month) {
+  if (count_peer_pressure(index, month) == 0) {
+    return(NaN)
+  } else {
+    # Proportion of contacts prescribing by month
+    return(count_peer_pressure(index, month) / contacts[index])
+  }
+}
+prop_peer_pressure(37,5)</code></pre>
+<pre><code>## [1] 0.6</code></pre>
+<pre class="r"><code>prop_peer_pressure(102,14)</code></pre>
+<pre><code>## [1] NaN</code></pre>
+<p>8a.</p>
+<pre class="r"><code>avg_peer_pressure &lt;- function(month) {
+  # Index of doctors who adopted at month
+  index_month &lt;- which(adopters(month) == TRUE)
+  # Proportion of prescribing contacts for those doctors
+  prop_month &lt;- sapply(index_month, prop_peer_pressure, month)
+  # Takes the average of proportions
+  avg_month &lt;- mean(prop_month, na.rm = TRUE)
+  
+  index_after &lt;- which(adopters(month, TRUE) == TRUE)
+  prop_after &lt;- sapply(index_after, prop_peer_pressure, month)
+  avg_after &lt;- mean(prop_after, na.rm = TRUE)
+
+  return(c(avg_month, avg_after))
+}</code></pre>
+<p>8b.</p>
+<pre class="r"><code>month &lt;- c(1:17)
+averages &lt;- sapply(month, avg_peer_pressure)
+
+plot(month, averages[1,], type = &quot;o&quot;, col = &quot;red&quot;, xlab = &quot;Month&quot;, ylab = &quot;Proportion of Prescribing Contacts&quot;)
+lines(month, averages[2,], type = &quot;o&quot;, col = &quot;blue&quot;)
+legend(1,1, legend = c(&quot;Adopters&quot;, &quot;Non-adopters&quot;), col = c(&quot;red&quot;, &quot;blue&quot;), lty = 1)</code></pre>
+<p><img src="/post/InClass_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>plot(month, averages[1,]-averages[2,], type = &quot;o&quot;)</code></pre>
+<p><img src="/post/InClass_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+
+    </div>
+  </div>
+
+</article>
+
+<div class="container">
+  <nav>
+  <ul class="pager">
+    
+
+    
+    <li class="next"><a href="/post/2015-01-01-lorem-ipsum/">Lorem Ipsum <span
+      aria-hidden="true">&rarr;</span></a></li>
+    
+  </ul>
+</nav>
+
+</div>
+
+<div class="article-container">
+  
+<section id="comments">
+  <div id="disqus_thread">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'php2560-zhang';
+    var disqus_identifier = '\/post\/InClass\/';
+    var disqus_title = 'February 28, 2017 - In-Class Project';
+    var disqus_url = '\/post\/InClass\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017 &middot; 
+
+      Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
+      theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
+    <script src="/js/jquery-1.12.3.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/isotope.pkgd.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+
+    
+    
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    <script async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+    
+
+  </body>
+</html>
+

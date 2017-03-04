@@ -99,5 +99,281 @@ Figure 1: A fancy pie chart.
 </description>
     </item>
     
+    <item>
+      <title>February 28, 2017 - In-Class Project</title>
+      <link>/post/InClass/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/InClass/</guid>
+      <description>&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ckm_nodes &amp;lt;- read.csv(file = &amp;quot;ckm_nodes.csv&amp;quot;)
+
+head(ckm_nodes)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##     city adoption_date medical_school attend_meetings medical_journals
+## 1 Peoria             1     1920--1929       specialty                9
+## 2 Peoria            12          1945+            none                5
+## 3 Peoria             8     1935--1939         general                7
+## 4 Peoria             9     1940--1944         general                6
+## 5 Peoria             9     1935--1939         general                4
+## 6 Peoria            10     1930--1934            none                7
+##   free_time_with discuss_medicine_socially club_with_drs
+## 1    non-doctors                        no            no
+## 2        doctors                       yes            no
+## 3        doctors                        no            no
+## 4    non-doctors                        no            no
+## 5    non-doctors                       yes            no
+## 6          split                       yes            no
+##   drs_among_three_best_friends practicing_here office_visits_per_week
+## 1                            0       20+ years               101--150
+## 2                            3         1- year                76--100
+## 3                            2    10--20 years                76--100
+## 4                            0     5--10 years                 51--75
+## 5                            1    10--20 years                 51--75
+## 6                            0    10--20 years               101--150
+##       proximity_to_other_drs    specialty
+## 1     in_building_and_office pediatrician
+## 2     in_building_and_office           GP
+## 3 in_building_but_not_office    internist
+## 4     in_building_and_office           GP
+## 5 in_building_but_not_office           GP
+## 6     in_building_and_office    internist&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(ckm_nodes)[1]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 246&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(ckm_nodes)[2]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 13&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;colnames(ckm_nodes)[1:2]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;city&amp;quot;          &amp;quot;adoption_date&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;plyr&amp;quot;)
+library(&amp;#39;plyr&amp;#39;)
+names(which.max(table(ckm_nodes$adoption_date)))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Inf&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;count(ckm_nodes, &amp;#39;adoption_date&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    adoption_date freq
+## 1              1   11
+## 2              2    9
+## 3              3    9
+## 4              4   11
+## 5              5   11
+## 6              6   11
+## 7              7   13
+## 8              8    7
+## 9              9    4
+## 10            10    1
+## 11            11    5
+## 12            12    3
+## 13            13    3
+## 14            14    4
+## 15            15    4
+## 16            16    2
+## 17            17    1
+## 18           Inf   16
+## 19            NA  121&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Only include rows in which the adoption date is not NA
+cleaned_nodes &amp;lt;- ckm_nodes[which(!is.na(ckm_nodes$adoption_date)),]
+
+dim(cleaned_nodes)[1]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 125&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(cleaned_nodes)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##     city adoption_date medical_school attend_meetings medical_journals
+## 1 Peoria             1     1920--1929       specialty                9
+## 2 Peoria            12          1945+            none                5
+## 3 Peoria             8     1935--1939         general                7
+## 4 Peoria             9     1940--1944         general                6
+## 5 Peoria             9     1935--1939         general                4
+## 6 Peoria            10     1930--1934            none                7
+##   free_time_with discuss_medicine_socially club_with_drs
+## 1    non-doctors                        no            no
+## 2        doctors                       yes            no
+## 3        doctors                        no            no
+## 4    non-doctors                        no            no
+## 5    non-doctors                       yes            no
+## 6          split                       yes            no
+##   drs_among_three_best_friends practicing_here office_visits_per_week
+## 1                            0       20+ years               101--150
+## 2                            3         1- year                76--100
+## 3                            2    10--20 years                76--100
+## 4                            0     5--10 years                 51--75
+## 5                            1    10--20 years                 51--75
+## 6                            0    10--20 years               101--150
+##       proximity_to_other_drs    specialty
+## 1     in_building_and_office pediatrician
+## 2     in_building_and_office           GP
+## 3 in_building_but_not_office    internist
+## 4     in_building_and_office           GP
+## 5 in_building_but_not_office           GP
+## 6     in_building_and_office    internist&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;4&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;adopters &amp;lt;- function(month, not.yet = FALSE) {
+  # Create vector of logicals with length equalling the number of rows in cleaned_nodes
+  vec &amp;lt;- vector(mode = &amp;quot;logical&amp;quot;, length = dim(cleaned_nodes)[1])
+  if (not.yet == FALSE) {
+    # For each row (doctor) in the cleaned data
+    for (i in 1:dim(cleaned_nodes)[1]) {
+      # True/False if adopted during month
+      if (cleaned_nodes$adoption_date[i] == month) {
+        vec[i] = TRUE
+      } else {
+        vec[i] = FALSE
+      } 
+    }
+  } else {
+    for (i in 1:dim(cleaned_nodes)[1]) {
+      # True/False if adopted after month or never adopted
+      if (cleaned_nodes$adoption_date[i] &amp;gt; month || is.infinite(cleaned_nodes$adoption_date[i])) {
+        vec[i] = TRUE
+      } else {
+        vec[i] = FALSE
+      } 
+    }
+  }
+  return(vec)
+}
+length(which(adopters(2)==TRUE))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 9&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;length(which(adopters(14, TRUE)==TRUE))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 23&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;5&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ckm_network = read.table(&amp;quot;ckm_network.dat&amp;quot;)
+# Indices for which the adoption date is not NA
+keep &amp;lt;- which(!is.na(ckm_nodes$adoption_date))
+# Data set including only rows and columns with kept indices
+cleaned_network &amp;lt;- ckm_network[keep,]
+cleaned_network &amp;lt;- cleaned_network[,keep]
+
+dim(cleaned_network)[1]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 125&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(cleaned_network)[2]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 125&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(cleaned_network)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20
+## 1  0  0  0  0  0  0  0  1  0   0   0   0   0   0   0   0   0   0   0   0
+## 2  0  0  0  0  0  0  0  0  0   0   1   0   0   0   0   0   0   0   0   0
+## 3  0  0  0  0  0  0  0  0  1   0   0   0   0   1   0   1   0   0   0   1
+## 4  0  0  0  0  0  0  1  0  0   0   0   0   0   0   0   0   0   0   0   0
+## 5  0  0  0  0  0  0  0  0  0   1   0   1   0   0   1   0   0   0   0   0
+## 6  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0
+##   V21 V22 V23 V24 V25 V26 V27 V28 V29 V30 V31 V32 V33 V34 V35 V36 V37 V38
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   1   0   1   0   1   0   1   0   1   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   1
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   1   0   1   0   0   0   0   0   0   0
+##   V39 V58 V70 V72 V73 V74 V75 V76 V77 V78 V79 V80 V81 V82 V91 V92 V93 V94
+## 1   0   1   0   0   0   0   0   0   0   1   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+##   V95 V96 V97 V98 V105 V108 V119 V121 V122 V123 V124 V125 V126 V127 V128
+## 1   0   0   0   0    0    0    0    0    0    0    0    0    0    0    0
+## 2   0   0   0   1    0    0    0    0    0    0    0    0    0    0    0
+## 3   0   0   0   0    0    0    0    0    0    0    0    0    0    0    0
+## 4   0   0   0   0    0    0    0    0    0    0    0    0    0    0    0
+## 5   0   0   0   0    0    0    0    0    0    0    0    0    0    0    0
+## 6   0   0   0   0    0    0    0    0    0    0    0    0    0    0    0
+##   V129 V130 V131 V132 V133 V134 V135 V136 V137 V151 V152 V153 V154 V155
+## 1    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 2    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 3    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 4    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 5    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 6    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+##   V156 V168 V169 V170 V171 V172 V173 V174 V175 V176 V177 V178 V179 V180
+## 1    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 2    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 3    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 4    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 5    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 6    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+##   V181 V182 V195 V196 V197 V198 V199 V200 V212 V213 V214 V215 V216 V217
+## 1    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 2    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 3    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 4    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 5    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+## 6    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+##   V218 V219 V220 V221 V222 V223 V224 V225 V226 V227 V229 V241
+## 1    0    0    0    0    0    0    0    0    0    0    0    0
+## 2    0    0    0    0    0    0    0    0    0    0    0    0
+## 3    0    0    0    0    0    0    0    0    0    0    0    0
+## 4    0    0    0    0    0    0    0    0    0    0    0    0
+## 5    0    0    0    0    0    0    0    0    0    0    0    0
+## 6    0    0    0    0    0    0    0    0    0    0    0    0&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;6&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Sums each row of cleaned_network --&amp;gt; number of contacts for each doctor
+contacts &amp;lt;- unname(apply(cleaned_network, 1, sum))
+
+contacts[41]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;PART 2 7a.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;count_peer_pressure &amp;lt;- function(index, month) {
+  # Indices for which doctors started prescribing at month or earlier
+  prescribe &amp;lt;- which(cleaned_nodes$adoption_date &amp;lt;= month)
+  # Table of doctors who adopted before month and their contacts
+  docs &amp;lt;- cleaned_network[,prescribe]
+  # Counts number of contacts
+  peers &amp;lt;- unname(apply(docs, 1, sum))
+  # Number of contacts for doctor at index number
+  peers[index]
+}
+count_peer_pressure(37, 5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;7b.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;prop_peer_pressure &amp;lt;- function(index, month) {
+  if (count_peer_pressure(index, month) == 0) {
+    return(NaN)
+  } else {
+    # Proportion of contacts prescribing by month
+    return(count_peer_pressure(index, month) / contacts[index])
+  }
+}
+prop_peer_pressure(37,5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.6&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;prop_peer_pressure(102,14)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] NaN&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;8a.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;avg_peer_pressure &amp;lt;- function(month) {
+  # Index of doctors who adopted at month
+  index_month &amp;lt;- which(adopters(month) == TRUE)
+  # Proportion of prescribing contacts for those doctors
+  prop_month &amp;lt;- sapply(index_month, prop_peer_pressure, month)
+  # Takes the average of proportions
+  avg_month &amp;lt;- mean(prop_month, na.rm = TRUE)
+  
+  index_after &amp;lt;- which(adopters(month, TRUE) == TRUE)
+  prop_after &amp;lt;- sapply(index_after, prop_peer_pressure, month)
+  avg_after &amp;lt;- mean(prop_after, na.rm = TRUE)
+
+  return(c(avg_month, avg_after))
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;8b.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;month &amp;lt;- c(1:17)
+averages &amp;lt;- sapply(month, avg_peer_pressure)
+
+plot(month, averages[1,], type = &amp;quot;o&amp;quot;, col = &amp;quot;red&amp;quot;, xlab = &amp;quot;Month&amp;quot;, ylab = &amp;quot;Proportion of Prescribing Contacts&amp;quot;)
+lines(month, averages[2,], type = &amp;quot;o&amp;quot;, col = &amp;quot;blue&amp;quot;)
+legend(1,1, legend = c(&amp;quot;Adopters&amp;quot;, &amp;quot;Non-adopters&amp;quot;), col = c(&amp;quot;red&amp;quot;, &amp;quot;blue&amp;quot;), lty = 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/InClass_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(month, averages[1,]-averages[2,], type = &amp;quot;o&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/InClass_files/figure-html/unnamed-chunk-10-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>

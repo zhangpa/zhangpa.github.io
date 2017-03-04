@@ -1,0 +1,147 @@
+---
+title: "February 28, 2017 - In-Class Project"
+author: "Pat Zhang"
+date: "February 28, 2017"
+output: html_document
+---
+
+1. 
+```{r}
+ckm_nodes <- read.csv(file = "ckm_nodes.csv")
+
+head(ckm_nodes)
+dim(ckm_nodes)[1]
+dim(ckm_nodes)[2]
+colnames(ckm_nodes)[1:2]
+```
+
+2.
+```{r}
+# install.packages("plyr")
+library('plyr')
+names(which.max(table(ckm_nodes$adoption_date)))
+count(ckm_nodes, 'adoption_date')
+```
+
+3.
+```{r}
+# Only include rows in which the adoption date is not NA
+cleaned_nodes <- ckm_nodes[which(!is.na(ckm_nodes$adoption_date)),]
+
+dim(cleaned_nodes)[1]
+head(cleaned_nodes)
+```
+
+4. 
+```{r}
+adopters <- function(month, not.yet = FALSE) {
+  # Create vector of logicals with length equalling the number of rows in cleaned_nodes
+  vec <- vector(mode = "logical", length = dim(cleaned_nodes)[1])
+  if (not.yet == FALSE) {
+    # For each row (doctor) in the cleaned data
+    for (i in 1:dim(cleaned_nodes)[1]) {
+      # True/False if adopted during month
+      if (cleaned_nodes$adoption_date[i] == month) {
+        vec[i] = TRUE
+      } else {
+        vec[i] = FALSE
+      } 
+    }
+  } else {
+    for (i in 1:dim(cleaned_nodes)[1]) {
+      # True/False if adopted after month or never adopted
+      if (cleaned_nodes$adoption_date[i] > month || is.infinite(cleaned_nodes$adoption_date[i])) {
+        vec[i] = TRUE
+      } else {
+        vec[i] = FALSE
+      } 
+    }
+  }
+  return(vec)
+}
+length(which(adopters(2)==TRUE))
+length(which(adopters(14, TRUE)==TRUE))
+```
+
+5.
+```{r}
+ckm_network = read.table("ckm_network.dat")
+# Indices for which the adoption date is not NA
+keep <- which(!is.na(ckm_nodes$adoption_date))
+# Data set including only rows and columns with kept indices
+cleaned_network <- ckm_network[keep,]
+cleaned_network <- cleaned_network[,keep]
+
+dim(cleaned_network)[1]
+dim(cleaned_network)[2]
+head(cleaned_network)
+```
+
+6.
+```{r}
+# Sums each row of cleaned_network --> number of contacts for each doctor
+contacts <- unname(apply(cleaned_network, 1, sum))
+
+contacts[41]
+```
+
+PART 2
+7a.
+```{r}
+count_peer_pressure <- function(index, month) {
+  # Indices for which doctors started prescribing at month or earlier
+  prescribe <- which(cleaned_nodes$adoption_date <= month)
+  # Table of doctors who adopted before month and their contacts
+  docs <- cleaned_network[,prescribe]
+  # Counts number of contacts
+  peers <- unname(apply(docs, 1, sum))
+  # Number of contacts for doctor at index number
+  peers[index]
+}
+count_peer_pressure(37, 5)
+```
+
+7b.
+```{r}
+prop_peer_pressure <- function(index, month) {
+  if (count_peer_pressure(index, month) == 0) {
+    return(NaN)
+  } else {
+    # Proportion of contacts prescribing by month
+    return(count_peer_pressure(index, month) / contacts[index])
+  }
+}
+prop_peer_pressure(37,5)
+prop_peer_pressure(102,14)
+```
+
+8a.
+```{r}
+avg_peer_pressure <- function(month) {
+  # Index of doctors who adopted at month
+  index_month <- which(adopters(month) == TRUE)
+  # Proportion of prescribing contacts for those doctors
+  prop_month <- sapply(index_month, prop_peer_pressure, month)
+  # Takes the average of proportions
+  avg_month <- mean(prop_month, na.rm = TRUE)
+  
+  index_after <- which(adopters(month, TRUE) == TRUE)
+  prop_after <- sapply(index_after, prop_peer_pressure, month)
+  avg_after <- mean(prop_after, na.rm = TRUE)
+
+  return(c(avg_month, avg_after))
+}
+```
+
+8b.
+```{r}
+month <- c(1:17)
+averages <- sapply(month, avg_peer_pressure)
+
+plot(month, averages[1,], type = "o", col = "red", xlab = "Month", ylab = "Proportion of Prescribing Contacts")
+lines(month, averages[2,], type = "o", col = "blue")
+legend(1,1, legend = c("Adopters", "Non-adopters"), col = c("red", "blue"), lty = 1)
+
+plot(month, averages[1,]-averages[2,], type = "o")
+```
+
