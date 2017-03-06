@@ -1,0 +1,43 @@
+---
+title: "Jackknife of the Mean!"
+author: "Pat Zhang"
+date: "March 4, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+mean.jackknife <- function(a_vector) {
+  n <- length(a_vector)
+  #theta <- mean(a_vector)
+  # Sum of mean estimates using omitted data
+  sum.theta.i <- 0
+  # Vector of means using omitted data
+  theta.i <- vector(length = n)
+  
+  # Finds sum of mean estimates using omitted data
+  # Adds mean estimates to theta.i vector
+  for (i in 1:n) {
+    mean.i <- mean(a_vector[-i])
+    theta.i[i] <- mean.i
+    sum.theta.i <- sum.theta.i + mean.i
+  }
+  # Finds the average of mean estimates using omitted data
+  # Calculates variance of mean estimates using omitted data
+  theta <- sum.theta.i / n
+  variance <- sum(sapply(theta.i, function(x) (x - theta)^2)) / (n-1)
+  
+  # Jackknife estimatation for variance and standard error
+  jackknife.variance <- (n-1)^2/n * variance
+  jackknife.stderr <- sqrt(jackknife.variance)
+  return(jackknife.stderr)
+}
+
+some_normals <- rnorm(100,mean=7,sd=5)
+mean(some_normals)
+(formula_se_of_mean <- sd(some_normals)/sqrt(length(some_normals)))
+all.equal(formula_se_of_mean,mean.jackknife(some_normals))
+```

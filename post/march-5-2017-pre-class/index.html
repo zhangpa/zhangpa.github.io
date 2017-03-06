@@ -32,11 +32,11 @@
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="/post/2016-12-30-hello-markdown/">
+  <link rel="canonical" href="/post/march-5-2017-pre-class/">
 
   
 
-  <title>A Plain Markdown Post | Patrick Zhang</title>
+  <title>March 5, 2017 - Pre-Class | Patrick Zhang</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
@@ -134,14 +134,14 @@
   
 
   <div class="article-container">
-    <h1 itemprop="name">A Plain Markdown Post</h1>
+    <h1 itemprop="name">March 5, 2017 - Pre-Class</h1>
     
 
 <div class="article-metadata">
 
   <span class="article-date">
-    <time datetime="2016-12-30 21:49:57 -0700 -0700" itemprop="datePublished">
-      Sat, Feb 3057, 30127
+    <time datetime="2017-03-05 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Sat, Feb 50, 5037
     </time>
   </span>
 
@@ -155,35 +155,35 @@
   <ul class="share">
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2016-12-30-hello-markdown%2f"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2fmarch-5-2017-pre-class%2f"
          target="_blank">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=A%20Plain%20Markdown%20Post&amp;url=%2fpost%2f2016-12-30-hello-markdown%2f"
+         href="https://twitter.com/intent/tweet?text=March%205%2c%202017%20-%20Pre-Class&amp;url=%2fpost%2fmarch-5-2017-pre-class%2f"
          target="_blank">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2016-12-30-hello-markdown%2f&amp;title=A%20Plain%20Markdown%20Post"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fmarch-5-2017-pre-class%2f&amp;title=March%205%2c%202017%20-%20Pre-Class"
          target="_blank">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2016-12-30-hello-markdown%2f&amp;title=A%20Plain%20Markdown%20Post"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fmarch-5-2017-pre-class%2f&amp;title=March%205%2c%202017%20-%20Pre-Class"
          target="_blank">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=A%20Plain%20Markdown%20Post&amp;body=%2fpost%2f2016-12-30-hello-markdown%2f">
+         href="mailto:?subject=March%205%2c%202017%20-%20Pre-Class&amp;body=%2fpost%2fmarch-5-2017-pre-class%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -196,28 +196,44 @@
 </div>
 
     <div class="article-style" itemprop="articleBody">
-      <p>This is a post written in plain Markdown (<code>*.md</code>) instead of R Markdown (<code>*.Rmd</code>). The major differences are:</p>
+      <!-- BLOGDOWN-HEAD -->
+<!-- /BLOGDOWN-HEAD -->
 
-<ol>
-<li>You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (<code>```{r}</code>);</li>
-<li>A plain Markdown post is rendered through <a href="https://gohugo.io/overview/configuration/" target="_blank">Blackfriday</a>, and an R Markdown document is compiled by <a href="http://rmarkdown.rstudio.com" target="_blank"><strong>rmarkdown</strong></a> and <a href="http://pandoc.org" target="_blank">Pandoc</a>.</li>
-</ol>
+<!-- BLOGDOWN-BODY-BEFORE -->
+<!-- /BLOGDOWN-BODY-BEFORE -->
+<pre class="r"><code>mean.jackknife &lt;- function(a_vector) {
+  n &lt;- length(a_vector)
+  #theta &lt;- mean(a_vector)
+  # Sum of mean estimates using omitted data
+  sum.theta.i &lt;- 0
+  # Vector of means using omitted data
+  theta.i &lt;- vector(length = n)
+  
+  # Finds sum of mean estimates using omitted data
+  # Adds mean estimates to theta.i vector
+  for (i in 1:n) {
+    mean.i &lt;- mean(a_vector[-i])
+    theta.i[i] &lt;- mean.i
+    sum.theta.i &lt;- sum.theta.i + mean.i
+  }
+  # Finds the average of mean estimates using omitted data
+  # Calculates variance of mean estimates using omitted data
+  theta &lt;- sum.theta.i / n
+  variance &lt;- sum(sapply(theta.i, function(x) (x - theta)^2)) / (n-1)
+  
+  # Jackknife estimatation for variance and standard error
+  jackknife.variance &lt;- (n-1)^2/n * variance
+  jackknife.stderr &lt;- sqrt(jackknife.variance)
+  return(jackknife.stderr)
+}
 
-<p>There are many differences in syntax between Blackfriday&rsquo;s Markdown and Pandoc&rsquo;s Markdown. For example, you can write a task list with Blackfriday but not with Pandoc:</p>
-
-<ul class="task-list">
-<li><input type="checkbox" checked disabled class="task-list-item"> Write an R package.</li>
-<li><input type="checkbox" disabled class="task-list-item"> Write a book.</li>
-<li><input type="checkbox" disabled class="task-list-item"> &hellip;</li>
-<li><input type="checkbox" disabled class="task-list-item"> Profit!</li>
-</ul>
-
-<p>Similarly, Blackfriday does not support LaTeX math and Pandoc does. I have added the MathJax support to this theme (<a href="https://github.com/yihui/hugo-lithium-theme" target="_blank">hugo-lithium-theme</a>) but there is a caveat for plain Markdown posts: you have to include inline math expressions in  a pair of escaped parentheses <code>\( \)</code> instead of dollar signs <code>$ $</code>, e.g. <code>\(S_n = \sum_{i=1}^n X_i\)</code>. For R Markdown posts, you can use <code>$ $</code> to write inline math expressions.</p>
-
-<p>When creating a new post, you have to decide whether the post format is Markdown or R Markdown, and this can be done via the <code>rmd</code> argument of the function <code>blogdown::new_post()</code>, e.g.</p>
-
-<pre><code class="language-r">blogdown::new_post(&quot;Post Title&quot;, rmd = FALSE)
-</code></pre>
+some_normals &lt;- rnorm(100,mean=7,sd=5)
+mean(some_normals)</code></pre>
+<pre><code>## [1] 7.792954</code></pre>
+<pre class="r"><code>(formula_se_of_mean &lt;- sd(some_normals)/sqrt(length(some_normals)))</code></pre>
+<pre><code>## [1] 0.5136205</code></pre>
+<pre class="r"><code>all.equal(formula_se_of_mean,mean.jackknife(some_normals))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 
     </div>
   </div>
@@ -228,12 +244,12 @@
   <nav>
   <ul class="pager">
     
-    <li class="previous"><a href="/post/2015-01-01-lorem-ipsum/"><span
-      aria-hidden="true">&larr;</span> Lorem Ipsum</a></li>
+    <li class="previous"><a href="/post/2016-12-30-hello-markdown/"><span
+      aria-hidden="true">&larr;</span> A Plain Markdown Post</a></li>
     
 
     
-    <li class="next"><a href="/post/march-5-2017-pre-class/">March 5, 2017 - Pre-Class <span
+    <li class="next"><a href="/post/2015-07-23-r-rmarkdown/">Hello R Markdown <span
       aria-hidden="true">&rarr;</span></a></li>
     
   </ul>
@@ -248,9 +264,9 @@
     <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'php2560-zhang';
-    var disqus_identifier = '\/post\/2016-12-30-hello-markdown\/';
-    var disqus_title = 'A Plain Markdown Post';
-    var disqus_url = '\/post\/2016-12-30-hello-markdown\/';
+    var disqus_identifier = '\/post\/march-5-2017-pre-class\/';
+    var disqus_title = 'March 5, 2017 - Pre-Class';
+    var disqus_url = '\/post\/march-5-2017-pre-class\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

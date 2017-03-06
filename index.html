@@ -370,48 +370,6 @@
   
   
   <h3 class="article-title" itemprop="name">
-    <a href="/post/2016-12-30-hello-markdown/" itemprop="url">A Plain Markdown Post</a>
-  </h3>
-  
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    <time datetime="2016-12-30 21:49:57 -0700 -0700" itemprop="datePublished">
-      Sat, Feb 3057, 30127
-    </time>
-  </span>
-
-  
-
-  
-
-  
-
-</div>
-
-  <div class="article-style" itemprop="articleBody">
-    
-    This is a post written in plain Markdown (*.md) instead of R Markdown (*.Rmd). The major differences are:
- You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (```{r}); A plain Markdown post is rendered through Blackfriday, and an R Markdown document is compiled by rmarkdown and Pandoc.  There are many differences in syntax between Blackfriday&rsquo;s Markdown and Pandoc&rsquo;s Markdown.
-    
-  </div>
-  <p class="read-more">
-    <a href="/post/2016-12-30-hello-markdown/" class="btn btn-primary btn-outline">
-      CONTINUE READING
-    </a>
-  </p>
-</div>
-
-      
-        
-        
-
-
-<div class="article-list-item" itemscope itemprop="blogPost">
-  
-  
-  <h3 class="article-title" itemprop="name">
     <a href="/post/2015-07-23-r-rmarkdown/" itemprop="url">Hello R Markdown</a>
   </h3>
   
@@ -419,8 +377,8 @@
 <div class="article-metadata">
 
   <span class="article-date">
-    <time datetime="2015-07-23 21:13:14 -0500 -0500" itemprop="datePublished">
-      Sat, Feb 2314, 23077
+    <time datetime="2017-07-23 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Sat, Feb 230, 23077
     </time>
   </span>
 
@@ -469,6 +427,47 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
   </div>
   <p class="read-more">
     <a href="/post/2015-07-23-r-rmarkdown/" class="btn btn-primary btn-outline">
+      CONTINUE READING
+    </a>
+  </p>
+</div>
+
+      
+        
+        
+
+
+<div class="article-list-item" itemscope itemprop="blogPost">
+  
+  
+  <h3 class="article-title" itemprop="name">
+    <a href="/post/march-5-2017-pre-class/" itemprop="url">March 5, 2017 - Pre-Class</a>
+  </h3>
+  
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    <time datetime="2017-03-05 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Sat, Feb 50, 5037
+    </time>
+  </span>
+
+  
+
+  
+
+  
+
+</div>
+
+  <div class="article-style" itemprop="articleBody">
+    
+    mean.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) #theta &lt;- mean(a_vector) # Sum of mean estimates using omitted data sum.theta.i &lt;- 0 # Vector of means using omitted data theta.i &lt;- vector(length = n) # Finds sum of mean estimates using omitted data # Adds mean estimates to theta.i vector for (i in 1:n) { mean.i &lt;- mean(a_vector[-i]) theta.i[i] &lt;- mean.i sum.theta.i &lt;- sum.theta.i + mean.i } # Finds the average of mean estimates using omitted data # Calculates variance of mean estimates using omitted data theta &lt;- sum.
+    
+  </div>
+  <p class="read-more">
+    <a href="/post/march-5-2017-pre-class/" class="btn btn-primary btn-outline">
       CONTINUE READING
     </a>
   </p>
