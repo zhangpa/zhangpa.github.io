@@ -26,17 +26,17 @@
   <link rel="stylesheet" href="/css/hugo-academic.css">
   
 
-  <link rel="alternate" href="https://www.sullivanstatistics.com/post/index.xml" type="application/rss+xml" title="Patrick Zhang">
-  <link rel="feed" href="https://www.sullivanstatistics.com/post/index.xml" type="application/rss+xml" title="Patrick Zhang">
+  <link rel="alternate" href="https://www.sullivanstatistics.com/index.xml" type="application/rss+xml" title="Patrick Zhang">
+  <link rel="feed" href="https://www.sullivanstatistics.com/index.xml" type="application/rss+xml" title="Patrick Zhang">
 
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="https://www.sullivanstatistics.com/post/">
+  <link rel="canonical" href="https://www.sullivanstatistics.com/post/march-5-2017-pre-class/">
 
   
 
-  <title>Posts | Patrick Zhang</title>
+  <title>March 5, 2017 - Pre-Class | Patrick Zhang</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
@@ -129,19 +129,12 @@
 </nav>
 
 
-
-
-<div class="universal-wrapper">
-
-  <h1>Posts</h1>
+<article class="article" itemscope itemtype="http://schema.org/Article">
 
   
 
-  
-  
-  <div>
-    
-    <h2><a href="https://www.sullivanstatistics.com/post/february-28-2017-in-class-project/">February 28, 2017 - In-Class Project</a></h2>
+  <div class="article-container">
+    <h1 itemprop="name">March 5, 2017 - Pre-Class</h1>
     
 
 <div class="article-metadata">
@@ -157,49 +150,127 @@
   
 
   
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.sullivanstatistics.com%2fpost%2fmarch-5-2017-pre-class%2f"
+         target="_blank">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=March%205%2c%202017%20-%20Pre-Class&amp;url=https%3a%2f%2fwww.sullivanstatistics.com%2fpost%2fmarch-5-2017-pre-class%2f"
+         target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.sullivanstatistics.com%2fpost%2fmarch-5-2017-pre-class%2f&amp;title=March%205%2c%202017%20-%20Pre-Class"
+         target="_blank">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fwww.sullivanstatistics.com%2fpost%2fmarch-5-2017-pre-class%2f&amp;title=March%205%2c%202017%20-%20Pre-Class"
+         target="_blank">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=March%205%2c%202017%20-%20Pre-Class&amp;body=https%3a%2f%2fwww.sullivanstatistics.com%2fpost%2fmarch-5-2017-pre-class%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
 
 </div>
 
-    <div class="article-style"><p>
-      
-      ckm_nodes &lt;- read.csv(file = &quot;ckm_nodes.csv&quot;) head(ckm_nodes) ## city adoption_date medical_school attend_meetings medical_journals ## 1 Peoria 1 1920&ndash;1929 specialty 9 ## 2 Peoria 12 1945+ none 5 ## 3 Peoria 8 1935&ndash;1939 general 7 ## 4 Peoria 9 1940&ndash;1944 general 6 ## 5 Peoria 9 1935&ndash;1939 general 4 ## 6 Peoria 10 1930&ndash;1934 none 7 ## free_time_with discuss_medicine_socially club_with_drs ## 1 non-doctors no no ## 2 doctors yes no ## 3 doctors no no ## 4 non-doctors no no ## 5 non-doctors yes no ## 6 split yes no ## drs_among_three_best_friends practicing_here office_visits_per_week ## 1 0 20+ years 101&ndash;150 ## 2 3 1- year 76&ndash;100 ## 3 2 10&ndash;20 years 76&ndash;100 ## 4 0 5&ndash;10 years 51&ndash;75 ## 5 1 10&ndash;20 years 51&ndash;75 ## 6 0 10&ndash;20 years 101&ndash;150 ## proximity_to_other_drs specialty ## 1 in_building_and_office pediatrician ## 2 in_building_and_office GP ## 3 in_building_but_not_office internist ## 4 in_building_and_office GP ## 5 in_building_but_not_office GP ## 6 in_building_and_office internist dim(ckm_nodes)[1] ## [1] 246 dim(ckm_nodes)[2] ## [1] 13 colnames(ckm_nodes)[1:2] ## [1] &quot;city&quot; &quot;adoption_date&quot;   # install.
-      
-    </p></div>
+    <div class="article-style" itemprop="articleBody">
+      <!-- BLOGDOWN-HEAD -->
+<!-- /BLOGDOWN-HEAD -->
+
+<!-- BLOGDOWN-BODY-BEFORE -->
+<!-- /BLOGDOWN-BODY-BEFORE -->
+<pre class="r"><code>mean.jackknife &lt;- function(a_vector) {
+  n &lt;- length(a_vector)
+  
+  # Vector of means using omitted data
+  theta.i &lt;- vector(length = n)
+  for (i in 1:n) {
+    theta.i[i] &lt;- mean(a_vector[-i])
+  }
+  
+  # Calculates variance of mean estimates using omitted data
+  variance &lt;- var(theta.i)
+  
+  # Jackknife estimatation for variance and standard error
+  jackknife.variance &lt;- (n-1)^2/n * variance
+  jackknife.stderr &lt;- sqrt(jackknife.variance)
+  return(jackknife.stderr)
+}
+
+some_normals &lt;- rnorm(100,mean=7,sd=5)
+mean(some_normals)</code></pre>
+<pre><code>## [1] 6.78892</code></pre>
+<pre class="r"><code>(formula_se_of_mean &lt;- sd(some_normals)/sqrt(length(some_normals)))</code></pre>
+<pre><code>## [1] 0.5349764</code></pre>
+<pre class="r"><code>all.equal(formula_se_of_mean,mean.jackknife(some_normals))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+
+    </div>
   </div>
-  
-  <div>
+
+</article>
+
+<div class="container">
+  <nav>
+  <ul class="pager">
     
-    <h2><a href="https://www.sullivanstatistics.com/post/march-5-2017-pre-class/">March 5, 2017 - Pre-Class</a></h2>
+
     
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    <time datetime="2017-03-06 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-      Sat, Feb 60, 6037
-    </time>
-  </span>
-
-  
-
-  
-
-  
+    <li class="next"><a href="https://www.sullivanstatistics.com/post/february-28-2017-in-class-project/">February 28, 2017 - In-Class Project <span
+      aria-hidden="true">&rarr;</span></a></li>
+    
+  </ul>
+</nav>
 
 </div>
 
-    <div class="article-style"><p>
-      
-      mean.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) # Vector of means using omitted data theta.i &lt;- vector(length = n) for (i in 1:n) { theta.i[i] &lt;- mean(a_vector[-i]) } # Calculates variance of mean estimates using omitted data variance &lt;- var(theta.i) # Jackknife estimatation for variance and standard error jackknife.variance &lt;- (n-1)^2/n * variance jackknife.stderr &lt;- sqrt(jackknife.variance) return(jackknife.stderr) } some_normals &lt;- rnorm(100,mean=7,sd=5) mean(some_normals) ## [1] 6.78892 (formula_se_of_mean &lt;- sd(some_normals)/sqrt(length(some_normals))) ## [1] 0.
-      
-    </p></div>
-  </div>
+<div class="article-container">
   
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
 
-  
+(function() {
+      
+      
+      if (window.location.hostname == "localhost")
+                return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'php2560-zhang';
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
 
 
 </div>
+
 <footer class="site-footer">
   <div class="container">
     <p class="powered-by">

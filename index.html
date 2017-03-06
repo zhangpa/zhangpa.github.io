@@ -347,13 +347,6 @@
     <h1>Recent Posts</h1>
     
     
-    <p class="view-all">
-      <a href="/post/">
-        More Posts
-        <i class="fa fa-angle-double-right"></i>
-      </a>
-    </p>
-    
 
   </div>
   <div class="col-xs-12 col-md-8">
@@ -361,6 +354,47 @@
     
 
     
+      
+        
+        
+
+
+<div class="article-list-item" itemscope itemprop="blogPost">
+  
+  
+  <h3 class="article-title" itemprop="name">
+    <a href="https://www.sullivanstatistics.com/post/february-28-2017-in-class-project/" itemprop="url">February 28, 2017 - In-Class Project</a>
+  </h3>
+  
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    <time datetime="2017-03-06 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Sat, Feb 60, 6037
+    </time>
+  </span>
+
+  
+
+  
+
+  
+
+</div>
+
+  <div class="article-style" itemprop="articleBody">
+    
+    ckm_nodes &lt;- read.csv(file = &quot;ckm_nodes.csv&quot;) head(ckm_nodes) ## city adoption_date medical_school attend_meetings medical_journals ## 1 Peoria 1 1920--1929 specialty 9 ## 2 Peoria 12 1945+ none 5 ## 3 Peoria 8 1935--1939 general 7 ## 4 Peoria 9 1940--1944 general 6 ## 5 Peoria 9 1935--1939 general 4 ## 6 Peoria 10 1930--1934 none 7 ## free_time_with discuss_medicine_socially club_with_drs ## 1 non-doctors no no ## 2 doctors yes no ## 3 doctors no no ## 4 non-doctors no no ## 5 non-doctors yes no ## 6 split yes no ## drs_among_three_best_friends practicing_here office_visits_per_week ## 1 0 20+ years 101--150 ## 2 3 1- year 76--100 ## 3 2 10--20 years 76--100 ## 4 0 5--10 years 51--75 ## 5 1 10--20 years 51--75 ## 6 0 10--20 years 101--150 ## proximity_to_other_drs specialty ## 1 in_building_and_office pediatrician ## 2 in_building_and_office GP ## 3 in_building_but_not_office internist ## 4 in_building_and_office GP ## 5 in_building_but_not_office GP ## 6 in_building_and_office internist dim(ckm_nodes)[1] ## [1] 246 dim(ckm_nodes)[2] ## [1] 13 colnames(ckm_nodes)[1:2] ## [1] &quot;city&quot; &quot;adoption_date&quot;   # install.
+    
+  </div>
+  <p class="read-more">
+    <a href="https://www.sullivanstatistics.com/post/february-28-2017-in-class-project/" class="btn btn-primary btn-outline">
+      CONTINUE READING
+    </a>
+  </p>
+</div>
+
       
         
         
@@ -392,48 +426,7 @@
 
   <div class="article-style" itemprop="articleBody">
     
-    mean.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) # Vector of means using omitted data theta.i &lt;- vector(length = n) for (i in 1:n) { theta.i[i] &lt;- mean(a_vector[-i]) } # Calculates variance of mean estimates using omitted data variance &lt;- var(theta.i) # Jackknife estimatation for variance and standard error jackknife.variance &lt;- (n-1)^2/n * variance jackknife.stderr &lt;- sqrt(jackknife.variance) return(jackknife.stderr) } some_normals &lt;- rnorm(100,mean=7,sd=5) mean(some_normals) ## [1] 7.553859 (formula_se_of_mean &lt;- sd(some_normals)/sqrt(length(some_normals))) ## [1] 0.
-    
-  </div>
-  <p class="read-more">
-    <a href="https://www.sullivanstatistics.com/post/march-5-2017-pre-class/" class="btn btn-primary btn-outline">
-      CONTINUE READING
-    </a>
-  </p>
-</div>
-
-      
-        
-        
-
-
-<div class="article-list-item" itemscope itemprop="blogPost">
-  
-  
-  <h3 class="article-title" itemprop="name">
-    <a href="https://www.sullivanstatistics.com/post/march-5-2017-pre-class/" itemprop="url">March 5, 2017 - Pre-Class</a>
-  </h3>
-  
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    <time datetime="2017-03-05 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-      Sat, Feb 50, 5037
-    </time>
-  </span>
-
-  
-
-  
-
-  
-
-</div>
-
-  <div class="article-style" itemprop="articleBody">
-    
-    mean.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) # Vector of means using omitted data theta.i &lt;- vector(length = n) for (i in 1:n) { theta.i[i] &lt;- mean(a_vector[-i]) } # Calculates variance of mean estimates using omitted data variance &lt;- var(theta.i) # Jackknife estimatation for variance and standard error jackknife.variance &lt;- (n-1)^2/n * variance jackknife.stderr &lt;- sqrt(jackknife.variance) return(jackknife.stderr) } some_normals &lt;- rnorm(100,mean=7,sd=5) mean(some_normals) ## [1] 7.067552 (formula_se_of_mean &lt;- sd(some_normals)/sqrt(length(some_normals))) ## [1] 0.
+    mean.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) # Vector of means using omitted data theta.i &lt;- vector(length = n) for (i in 1:n) { theta.i[i] &lt;- mean(a_vector[-i]) } # Calculates variance of mean estimates using omitted data variance &lt;- var(theta.i) # Jackknife estimatation for variance and standard error jackknife.variance &lt;- (n-1)^2/n * variance jackknife.stderr &lt;- sqrt(jackknife.variance) return(jackknife.stderr) } some_normals &lt;- rnorm(100,mean=7,sd=5) mean(some_normals) ## [1] 6.78892 (formula_se_of_mean &lt;- sd(some_normals)/sqrt(length(some_normals))) ## [1] 0.
     
   </div>
   <p class="read-more">

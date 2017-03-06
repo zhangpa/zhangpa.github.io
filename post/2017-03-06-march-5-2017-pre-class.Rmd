@@ -1,0 +1,35 @@
+---
+title: March 5, 2017 - Pre-Class
+date: '2017-03-06'
+slug: march-5-2017-pre-class
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+mean.jackknife <- function(a_vector) {
+  n <- length(a_vector)
+  
+  # Vector of means using omitted data
+  theta.i <- vector(length = n)
+  for (i in 1:n) {
+    theta.i[i] <- mean(a_vector[-i])
+  }
+  
+  # Calculates variance of mean estimates using omitted data
+  variance <- var(theta.i)
+  
+  # Jackknife estimatation for variance and standard error
+  jackknife.variance <- (n-1)^2/n * variance
+  jackknife.stderr <- sqrt(jackknife.variance)
+  return(jackknife.stderr)
+}
+
+some_normals <- rnorm(100,mean=7,sd=5)
+mean(some_normals)
+(formula_se_of_mean <- sd(some_normals)/sqrt(length(some_normals)))
+all.equal(formula_se_of_mean,mean.jackknife(some_normals))
+```
+
