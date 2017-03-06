@@ -1,7 +1,6 @@
 ---
 title: March 5, 2017 - Pre-Class
-author: "Pat Zhang"
-date: '2017-03-05'
+date: '2017-03-06'
 slug: march-5-2017-pre-class
 ---
 
@@ -15,11 +14,9 @@ mean.jackknife <- function(a_vector) {
   n <- length(a_vector)
   # Vector of means using omitted data
   theta.i <- vector(length = n)
-  
   for (i in 1:n) {
     theta.i[i] <- mean(a_vector[-i])
   }
-
   # Calculates variance of mean estimates using omitted data
   variance <- var(theta.i)
   # Jackknife estimatation for variance and standard error

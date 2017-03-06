@@ -26,13 +26,13 @@
   <link rel="stylesheet" href="/css/hugo-academic.css">
   
 
-  <link rel="alternate" href="/post/index.xml" type="application/rss+xml" title="Patrick Zhang">
-  <link rel="feed" href="/post/index.xml" type="application/rss+xml" title="Patrick Zhang">
+  <link rel="alternate" href="https://www.sullivanstatistics.com/post/index.xml" type="application/rss+xml" title="Patrick Zhang">
+  <link rel="feed" href="https://www.sullivanstatistics.com/post/index.xml" type="application/rss+xml" title="Patrick Zhang">
 
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="/post/">
+  <link rel="canonical" href="https://www.sullivanstatistics.com/post/">
 
   
 
@@ -141,47 +141,19 @@
   
   <div>
     
-    <h2><a href="/post/2015-07-23-r-rmarkdown/">Hello R Markdown</a></h2>
+    <h2><a href="https://www.sullivanstatistics.com/post/march-5-2017-pre-class/">March 5, 2017 - Pre-Class</a></h2>
     
 
 <div class="article-metadata">
 
   <span class="article-date">
-    <time datetime="2017-07-23 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-      Sat, Feb 230, 23077
+    <time datetime="2017-03-06 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Sat, Feb 60, 6037
     </time>
   </span>
 
   
-  
-  
-  <span class="article-categories">
-    <i class="fa fa-folder"></i>
-    
-    <a href="/categories/r">R</a
-    >
-    
-  </span>
-  
-  
 
-  
-  
-  
-  <span class="article-tags">
-    <i class="fa fa-tags"></i>
-    
-    <a href="/tags/r-markdown">R Markdown</a
-    >, 
-    
-    <a href="/tags/plot">plot</a
-    >, 
-    
-    <a href="/tags/regression">regression</a
-    >
-    
-  </span>
-  
   
 
   
@@ -190,16 +162,14 @@
 
     <div class="article-style"><p>
       
-      R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" target="_blank">http://rmarkdown.rstudio.com</a>.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.
+      mean.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) # Vector of means using omitted data theta.i &lt;- vector(length = n) for (i in 1:n) { theta.i[i] &lt;- mean(a_vector[-i]) } # Calculates variance of mean estimates using omitted data variance &lt;- var(theta.i) # Jackknife estimatation for variance and standard error jackknife.variance &lt;- (n-1)^2/n * variance jackknife.stderr &lt;- sqrt(jackknife.variance) return(jackknife.stderr) } some_normals &lt;- rnorm(100,mean=7,sd=5) mean(some_normals) ## [1] 7.553859 (formula_se_of_mean &lt;- sd(some_normals)/sqrt(length(some_normals))) ## [1] 0.
       
     </p></div>
   </div>
   
   <div>
     
-    <h2><a href="/post/march-5-2017-pre-class/">March 5, 2017 - Pre-Class</a></h2>
+    <h2><a href="https://www.sullivanstatistics.com/post/march-5-2017-pre-class/">March 5, 2017 - Pre-Class</a></h2>
     
 
 <div class="article-metadata">
@@ -220,72 +190,14 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
 
     <div class="article-style"><p>
       
-      mean.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) #theta &lt;- mean(a_vector) # Sum of mean estimates using omitted data sum.theta.i &lt;- 0 # Vector of means using omitted data theta.i &lt;- vector(length = n) # Finds sum of mean estimates using omitted data # Adds mean estimates to theta.i vector for (i in 1:n) { mean.i &lt;- mean(a_vector[-i]) theta.i[i] &lt;- mean.i sum.theta.i &lt;- sum.theta.i + mean.i } # Finds the average of mean estimates using omitted data # Calculates variance of mean estimates using omitted data theta &lt;- sum.
+      mean.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) # Vector of means using omitted data theta.i &lt;- vector(length = n) for (i in 1:n) { theta.i[i] &lt;- mean(a_vector[-i]) } # Calculates variance of mean estimates using omitted data variance &lt;- var(theta.i) # Jackknife estimatation for variance and standard error jackknife.variance &lt;- (n-1)^2/n * variance jackknife.stderr &lt;- sqrt(jackknife.variance) return(jackknife.stderr) } some_normals &lt;- rnorm(100,mean=7,sd=5) mean(some_normals) ## [1] 7.067552 (formula_se_of_mean &lt;- sd(some_normals)/sqrt(length(some_normals))) ## [1] 0.
       
     </p></div>
   </div>
   
   <div>
     
-    <h2><a href="/post/2016-12-30-hello-markdown/">A Plain Markdown Post</a></h2>
-    
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    <time datetime="2016-12-30 21:49:57 -0700 -0700" itemprop="datePublished">
-      Sat, Feb 3057, 30127
-    </time>
-  </span>
-
-  
-
-  
-
-  
-
-</div>
-
-    <div class="article-style"><p>
-      
-      This is a post written in plain Markdown (<em>.md) instead of R Markdown (</em>.Rmd). The major differences are:
- You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (```{r}); A plain Markdown post is rendered through Blackfriday, and an R Markdown document is compiled by rmarkdown and Pandoc.  There are many differences in syntax between Blackfriday&rsquo;s Markdown and Pandoc&rsquo;s Markdown.
-      
-    </p></div>
-  </div>
-  
-  <div>
-    
-    <h2><a href="/post/2015-01-01-lorem-ipsum/">Lorem Ipsum</a></h2>
-    
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    <time datetime="2015-01-01 13:09:13 -0600 -0600" itemprop="datePublished">
-      Sat, Feb 113, 1017
-    </time>
-  </span>
-
-  
-
-  
-
-  
-
-</div>
-
-    <div class="article-style"><p>
-      
-      <p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore <em>magna aliqua</em>. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-      
-    </p></div>
-  </div>
-  
-  <div>
-    
-    <h2><a href="/post/InClass/">February 28, 2017 - In-Class Project</a></h2>
+    <h2><a href="https://www.sullivanstatistics.com/post/InClass/">February 28, 2017 - In-Class Project</a></h2>
     
 
 <div class="article-metadata">
@@ -307,34 +219,6 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
     <div class="article-style"><p>
       
       ckm_nodes &lt;- read.csv(file = &quot;ckm_nodes.csv&quot;) head(ckm_nodes) ## city adoption_date medical_school attend_meetings medical_journals ## 1 Peoria 1 1920&ndash;1929 specialty 9 ## 2 Peoria 12 1945+ none 5 ## 3 Peoria 8 1935&ndash;1939 general 7 ## 4 Peoria 9 1940&ndash;1944 general 6 ## 5 Peoria 9 1935&ndash;1939 general 4 ## 6 Peoria 10 1930&ndash;1934 none 7 ## free_time_with discuss_medicine_socially club_with_drs ## 1 non-doctors no no ## 2 doctors yes no ## 3 doctors no no ## 4 non-doctors no no ## 5 non-doctors yes no ## 6 split yes no ## drs_among_three_best_friends practicing_here office_visits_per_week ## 1 0 20+ years 101&ndash;150 ## 2 3 1- year 76&ndash;100 ## 3 2 10&ndash;20 years 76&ndash;100 ## 4 0 5&ndash;10 years 51&ndash;75 ## 5 1 10&ndash;20 years 51&ndash;75 ## 6 0 10&ndash;20 years 101&ndash;150 ## proximity_to_other_drs specialty ## 1 in_building_and_office pediatrician ## 2 in_building_and_office GP ## 3 in_building_but_not_office internist ## 4 in_building_and_office GP ## 5 in_building_but_not_office GP ## 6 in_building_and_office internist dim(ckm_nodes)[1] ## [1] 246 dim(ckm_nodes)[2] ## [1] 13 colnames(ckm_nodes)[1:2] ## [1] &quot;city&quot; &quot;adoption_date&quot;   # install.
-      
-    </p></div>
-  </div>
-  
-  <div>
-    
-    <h2><a href="/post/jackknife/">Jackknife of the Mean!</a></h2>
-    
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-      Sat, Feb 10, 1017
-    </time>
-  </span>
-
-  
-
-  
-
-  
-
-</div>
-
-    <div class="article-style"><p>
-      
-      mean.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) #theta &lt;- mean(a_vector) # Sum of mean estimates using omitted data sum.theta.i &lt;- 0 # Vector of means using omitted data theta.i &lt;- vector(length = n) # Finds sum of mean estimates using omitted data # Adds mean estimates to theta.i vector for (i in 1:n) { mean.i &lt;- mean(a_vector[-i]) theta.i[i] &lt;- mean.i sum.theta.i &lt;- sum.theta.i + mean.i } # Finds the average of mean estimates using omitted data # Calculates variance of mean estimates using omitted data theta &lt;- sum.
       
     </p></div>
   </div>

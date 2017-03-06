@@ -2,68 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Patrick Zhang</title>
-    <link>/post/index.xml</link>
+    <link>https://www.sullivanstatistics.com/post/index.xml</link>
     <description>Recent content in Posts on Patrick Zhang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017</copyright>
-    <lastBuildDate>Sun, 23 Jul 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Mar 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Hello R Markdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Sun, 23 Jul 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
-      <description>&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;R Markdown&lt;/h1&gt;
-&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &amp;lt;- lm(dist ~ speed, data = cars)
-fit
-## 
-## Call:
-## lm(formula = dist ~ speed, data = cars)
-## 
-## Coefficients:
-## (Intercept)        speed  
-##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Including Plots&lt;/h1&gt;
-&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
-  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
-  init.angle = -50, border = NA
-)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 1: A fancy pie chart.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
       <title>March 5, 2017 - Pre-Class</title>
-      <link>/post/march-5-2017-pre-class/</link>
-      <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>
+      <link>https://www.sullivanstatistics.com/post/march-5-2017-pre-class/</link>
+      <pubDate>Mon, 06 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/march-5-2017-pre-class/</guid>
+      <guid>https://www.sullivanstatistics.com/post/march-5-2017-pre-class/</guid>
       <description>&lt;!-- BLOGDOWN-HEAD --&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
@@ -71,24 +23,13 @@ Figure 1: A fancy pie chart.
 &lt;!-- /BLOGDOWN-BODY-BEFORE --&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean.jackknife &amp;lt;- function(a_vector) {
   n &amp;lt;- length(a_vector)
-  #theta &amp;lt;- mean(a_vector)
-  # Sum of mean estimates using omitted data
-  sum.theta.i &amp;lt;- 0
   # Vector of means using omitted data
   theta.i &amp;lt;- vector(length = n)
-  
-  # Finds sum of mean estimates using omitted data
-  # Adds mean estimates to theta.i vector
   for (i in 1:n) {
-    mean.i &amp;lt;- mean(a_vector[-i])
-    theta.i[i] &amp;lt;- mean.i
-    sum.theta.i &amp;lt;- sum.theta.i + mean.i
+    theta.i[i] &amp;lt;- mean(a_vector[-i])
   }
-  # Finds the average of mean estimates using omitted data
   # Calculates variance of mean estimates using omitted data
-  theta &amp;lt;- sum.theta.i / n
-  variance &amp;lt;- sum(sapply(theta.i, function(x) (x - theta)^2)) / (n-1)
-  
+  variance &amp;lt;- var(theta.i)
   # Jackknife estimatation for variance and standard error
   jackknife.variance &amp;lt;- (n-1)^2/n * variance
   jackknife.stderr &amp;lt;- sqrt(jackknife.variance)
@@ -97,61 +38,58 @@ Figure 1: A fancy pie chart.
 
 some_normals &amp;lt;- rnorm(100,mean=7,sd=5)
 mean(some_normals)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 7.792954&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 7.553859&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;(formula_se_of_mean &amp;lt;- sd(some_normals)/sqrt(length(some_normals)))&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 0.5136205&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.5232395&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;all.equal(formula_se_of_mean,mean.jackknife(some_normals))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] TRUE&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
     <item>
-      <title>A Plain Markdown Post</title>
-      <link>/post/2016-12-30-hello-markdown/</link>
-      <pubDate>Fri, 30 Dec 2016 21:49:57 -0700</pubDate>
+      <title>March 5, 2017 - Pre-Class</title>
+      <link>https://www.sullivanstatistics.com/post/march-5-2017-pre-class/</link>
+      <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/2016-12-30-hello-markdown/</guid>
-      <description>&lt;p&gt;This is a post written in plain Markdown (&lt;code&gt;*.md&lt;/code&gt;) instead of R Markdown (&lt;code&gt;*.Rmd&lt;/code&gt;). The major differences are:&lt;/p&gt;
+      <guid>https://www.sullivanstatistics.com/post/march-5-2017-pre-class/</guid>
+      <description>&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
 
-&lt;ol&gt;
-&lt;li&gt;You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (&lt;code&gt;```{r}&lt;/code&gt;);&lt;/li&gt;
-&lt;li&gt;A plain Markdown post is rendered through &lt;a href=&#34;https://gohugo.io/overview/configuration/&#34; target=&#34;_blank&#34;&gt;Blackfriday&lt;/a&gt;, and an R Markdown document is compiled by &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;rmarkdown&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;http://pandoc.org&#34; target=&#34;_blank&#34;&gt;Pandoc&lt;/a&gt;.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;!-- BLOGDOWN-BODY-BEFORE --&gt;
+&lt;!-- /BLOGDOWN-BODY-BEFORE --&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean.jackknife &amp;lt;- function(a_vector) {
+  n &amp;lt;- length(a_vector)
+  # Vector of means using omitted data
+  theta.i &amp;lt;- vector(length = n)
+  
+  for (i in 1:n) {
+    theta.i[i] &amp;lt;- mean(a_vector[-i])
+  }
 
-&lt;p&gt;There are many differences in syntax between Blackfriday&amp;rsquo;s Markdown and Pandoc&amp;rsquo;s Markdown. For example, you can write a task list with Blackfriday but not with Pandoc:&lt;/p&gt;
+  # Calculates variance of mean estimates using omitted data
+  variance &amp;lt;- var(theta.i)
+  # Jackknife estimatation for variance and standard error
+  jackknife.variance &amp;lt;- (n-1)^2/n * variance
+  jackknife.stderr &amp;lt;- sqrt(jackknife.variance)
+  return(jackknife.stderr)
+}
 
-&lt;ul class=&#34;task-list&#34;&gt;
-&lt;li&gt;&lt;input type=&#34;checkbox&#34; checked disabled class=&#34;task-list-item&#34;&gt; Write an R package.&lt;/li&gt;
-&lt;li&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; Write a book.&lt;/li&gt;
-&lt;li&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; &amp;hellip;&lt;/li&gt;
-&lt;li&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; Profit!&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Similarly, Blackfriday does not support LaTeX math and Pandoc does. I have added the MathJax support to this theme (&lt;a href=&#34;https://github.com/yihui/hugo-lithium-theme&#34; target=&#34;_blank&#34;&gt;hugo-lithium-theme&lt;/a&gt;) but there is a caveat for plain Markdown posts: you have to include inline math expressions in  a pair of escaped parentheses &lt;code&gt;\( \)&lt;/code&gt; instead of dollar signs &lt;code&gt;$ $&lt;/code&gt;, e.g. &lt;code&gt;\(S_n = \sum_{i=1}^n X_i\)&lt;/code&gt;. For R Markdown posts, you can use &lt;code&gt;$ $&lt;/code&gt; to write inline math expressions.&lt;/p&gt;
-
-&lt;p&gt;When creating a new post, you have to decide whether the post format is Markdown or R Markdown, and this can be done via the &lt;code&gt;rmd&lt;/code&gt; argument of the function &lt;code&gt;blogdown::new_post()&lt;/code&gt;, e.g.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;blogdown::new_post(&amp;quot;Post Title&amp;quot;, rmd = FALSE)
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Lorem Ipsum</title>
-      <link>/post/2015-01-01-lorem-ipsum/</link>
-      <pubDate>Thu, 01 Jan 2015 13:09:13 -0600</pubDate>
-      
-      <guid>/post/2015-01-01-lorem-ipsum/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Lorem ipsum&lt;/strong&gt; dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore &lt;em&gt;magna aliqua&lt;/em&gt;. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
+some_normals &amp;lt;- rnorm(100,mean=7,sd=5)
+mean(some_normals)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 7.067552&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;(formula_se_of_mean &amp;lt;- sd(some_normals)/sqrt(length(some_normals)))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.5601234&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;all.equal(formula_se_of_mean,mean.jackknife(some_normals))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] TRUE&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
     <item>
       <title>February 28, 2017 - In-Class Project</title>
-      <link>/post/InClass/</link>
+      <link>https://www.sullivanstatistics.com/post/InClass/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/InClass/</guid>
+      <guid>https://www.sullivanstatistics.com/post/InClass/</guid>
       <description>&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;&lt;/li&gt;
 &lt;/ol&gt;
@@ -416,56 +354,9 @@ averages &amp;lt;- sapply(month, avg_peer_pressure)
 plot(month, averages[1,], type = &amp;quot;o&amp;quot;, col = &amp;quot;red&amp;quot;, xlab = &amp;quot;Month&amp;quot;, ylab = &amp;quot;Proportion of Prescribing Contacts&amp;quot;)
 lines(month, averages[2,], type = &amp;quot;o&amp;quot;, col = &amp;quot;blue&amp;quot;)
 legend(1,1, legend = c(&amp;quot;Adopters&amp;quot;, &amp;quot;Non-adopters&amp;quot;), col = c(&amp;quot;red&amp;quot;, &amp;quot;blue&amp;quot;), lty = 1)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/InClass_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.sullivanstatistics.com/post/InClass_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(month, averages[1,]-averages[2,], type = &amp;quot;o&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/InClass_files/figure-html/unnamed-chunk-10-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Jackknife of the Mean!</title>
-      <link>/post/jackknife/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/post/jackknife/</guid>
-      <description>&lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;!-- /BLOGDOWN-HEAD --&gt;
-
-&lt;!-- BLOGDOWN-BODY-BEFORE --&gt;
-&lt;!-- /BLOGDOWN-BODY-BEFORE --&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean.jackknife &amp;lt;- function(a_vector) {
-  n &amp;lt;- length(a_vector)
-  #theta &amp;lt;- mean(a_vector)
-  # Sum of mean estimates using omitted data
-  sum.theta.i &amp;lt;- 0
-  # Vector of means using omitted data
-  theta.i &amp;lt;- vector(length = n)
-  
-  # Finds sum of mean estimates using omitted data
-  # Adds mean estimates to theta.i vector
-  for (i in 1:n) {
-    mean.i &amp;lt;- mean(a_vector[-i])
-    theta.i[i] &amp;lt;- mean.i
-    sum.theta.i &amp;lt;- sum.theta.i + mean.i
-  }
-  # Finds the average of mean estimates using omitted data
-  # Calculates variance of mean estimates using omitted data
-  theta &amp;lt;- sum.theta.i / n
-  variance &amp;lt;- sum(sapply(theta.i, function(x) (x - theta)^2)) / (n-1)
-  
-  # Jackknife estimatation for variance and standard error
-  jackknife.variance &amp;lt;- (n-1)^2/n * variance
-  jackknife.stderr &amp;lt;- sqrt(jackknife.variance)
-  return(jackknife.stderr)
-}
-
-some_normals &amp;lt;- rnorm(100,mean=7,sd=5)
-mean(some_normals)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 7.218317&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;(formula_se_of_mean &amp;lt;- sd(some_normals)/sqrt(length(some_normals)))&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 0.527418&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;all.equal(formula_se_of_mean,mean.jackknife(some_normals))&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] TRUE&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.sullivanstatistics.com/post/InClass_files/figure-html/unnamed-chunk-10-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
