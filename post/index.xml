@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Patrick Zhang</title>
-    <link>https://www.sullivanstatistics.com/post/index.xml</link>
+    <link>https://zhangpa.github.io/post/index.xml</link>
     <description>Recent content in Posts on Patrick Zhang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -12,10 +12,10 @@
     
     <item>
       <title>February 28, 2017 - In-Class Project</title>
-      <link>https://www.sullivanstatistics.com/post/february-28-2017-in-class-project/</link>
+      <link>https://zhangpa.github.io/post/february-28-2017-in-class-project/</link>
       <pubDate>Mon, 06 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.sullivanstatistics.com/post/february-28-2017-in-class-project/</guid>
+      <guid>https://zhangpa.github.io/post/february-28-2017-in-class-project/</guid>
       <description>&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;&lt;/li&gt;
 &lt;/ol&gt;
@@ -280,18 +280,18 @@ averages &amp;lt;- sapply(month, avg_peer_pressure)
 plot(month, averages[1,], type = &amp;quot;o&amp;quot;, col = &amp;quot;red&amp;quot;, xlab = &amp;quot;Month&amp;quot;, ylab = &amp;quot;Proportion of Prescribing Contacts&amp;quot;)
 lines(month, averages[2,], type = &amp;quot;o&amp;quot;, col = &amp;quot;blue&amp;quot;)
 legend(1,1, legend = c(&amp;quot;Adopters&amp;quot;, &amp;quot;Non-adopters&amp;quot;), col = c(&amp;quot;red&amp;quot;, &amp;quot;blue&amp;quot;), lty = 1)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.sullivanstatistics.com/post/2017-03-06-february-28-2017-in-class-project_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhangpa.github.io/post/2017-03-06-february-28-2017-in-class-project_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(month, averages[1,]-averages[2,], type = &amp;quot;o&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.sullivanstatistics.com/post/2017-03-06-february-28-2017-in-class-project_files/figure-html/unnamed-chunk-10-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhangpa.github.io/post/2017-03-06-february-28-2017-in-class-project_files/figure-html/unnamed-chunk-10-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>March 5, 2017 - Pre-Class</title>
-      <link>https://www.sullivanstatistics.com/post/march-5-2017-pre-class/</link>
+      <link>https://zhangpa.github.io/post/march-5-2017-pre-class/</link>
       <pubDate>Mon, 06 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.sullivanstatistics.com/post/march-5-2017-pre-class/</guid>
+      <guid>https://zhangpa.github.io/post/march-5-2017-pre-class/</guid>
       <description>&lt;!-- BLOGDOWN-HEAD --&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
@@ -317,9 +317,9 @@ legend(1,1, legend = c(&amp;quot;Adopters&amp;quot;, &amp;quot;Non-adopters&amp;
 
 some_normals &amp;lt;- rnorm(100,mean=7,sd=5)
 mean(some_normals)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 6.78892&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 7.064009&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;(formula_se_of_mean &amp;lt;- sd(some_normals)/sqrt(length(some_normals)))&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 0.5349764&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.456113&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;all.equal(formula_se_of_mean,mean.jackknife(some_normals))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] TRUE&lt;/code&gt;&lt;/pre&gt;
 </description>

@@ -26,13 +26,13 @@
   <link rel="stylesheet" href="/css/hugo-academic.css">
   
 
-  <link rel="alternate" href="https://www.sullivanstatistics.com/post/index.xml" type="application/rss+xml" title="Patrick Zhang">
-  <link rel="feed" href="https://www.sullivanstatistics.com/post/index.xml" type="application/rss+xml" title="Patrick Zhang">
+  <link rel="alternate" href="https://zhangpa.github.io/post/index.xml" type="application/rss+xml" title="Patrick Zhang">
+  <link rel="feed" href="https://zhangpa.github.io/post/index.xml" type="application/rss+xml" title="Patrick Zhang">
 
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="https://www.sullivanstatistics.com/post/">
+  <link rel="canonical" href="https://zhangpa.github.io/post/">
 
   
 
@@ -141,7 +141,7 @@
   
   <div>
     
-    <h2><a href="https://www.sullivanstatistics.com/post/february-28-2017-in-class-project/">February 28, 2017 - In-Class Project</a></h2>
+    <h2><a href="https://zhangpa.github.io/post/february-28-2017-in-class-project/">February 28, 2017 - In-Class Project</a></h2>
     
 
 <div class="article-metadata">
@@ -169,7 +169,7 @@
   
   <div>
     
-    <h2><a href="https://www.sullivanstatistics.com/post/march-5-2017-pre-class/">March 5, 2017 - Pre-Class</a></h2>
+    <h2><a href="https://zhangpa.github.io/post/march-5-2017-pre-class/">March 5, 2017 - Pre-Class</a></h2>
     
 
 <div class="article-metadata">
@@ -190,7 +190,7 @@
 
     <div class="article-style"><p>
       
-      mean.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) # Vector of means using omitted data theta.i &lt;- vector(length = n) for (i in 1:n) { theta.i[i] &lt;- mean(a_vector[-i]) } # Calculates variance of mean estimates using omitted data variance &lt;- var(theta.i) # Jackknife estimatation for variance and standard error jackknife.variance &lt;- (n-1)^2/n * variance jackknife.stderr &lt;- sqrt(jackknife.variance) return(jackknife.stderr) } some_normals &lt;- rnorm(100,mean=7,sd=5) mean(some_normals) ## [1] 6.78892 (formula_se_of_mean &lt;- sd(some_normals)/sqrt(length(some_normals))) ## [1] 0.
+      mean.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) # Vector of means using omitted data theta.i &lt;- vector(length = n) for (i in 1:n) { theta.i[i] &lt;- mean(a_vector[-i]) } # Calculates variance of mean estimates using omitted data variance &lt;- var(theta.i) # Jackknife estimatation for variance and standard error jackknife.variance &lt;- (n-1)^2/n * variance jackknife.stderr &lt;- sqrt(jackknife.variance) return(jackknife.stderr) } some_normals &lt;- rnorm(100,mean=7,sd=5) mean(some_normals) ## [1] 7.064009 (formula_se_of_mean &lt;- sd(some_normals)/sqrt(length(some_normals))) ## [1] 0.
       
     </p></div>
   </div>
