@@ -347,7 +347,7 @@
 
   <div class="article-style" itemprop="articleBody">
     
-    mean.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) # Vector of means using omitted data theta.i &lt;- vector(length = n) for (i in 1:n) { theta.i[i] &lt;- mean(a_vector[-i]) } # Calculates variance of mean estimates using omitted data variance &lt;- var(theta.i) # Jackknife estimatation for variance and standard error jackknife.variance &lt;- (n-1)^2/n * variance jackknife.stderr &lt;- sqrt(jackknife.variance) return(jackknife.stderr) } some_normals &lt;- rnorm(100,mean=7,sd=5) mean(some_normals) ## [1] 7.513658 (formula_se_of_mean &lt;- sd(some_normals)/sqrt(length(some_normals))) ## [1] 0.
+    mean.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) # Vector of means using omitted data theta.i &lt;- vector(length = n) for (i in 1:n) { theta.i[i] &lt;- mean(a_vector[-i]) } # Calculates variance of mean estimates using omitted data variance &lt;- var(theta.i) # Jackknife estimatation for variance and standard error jackknife.variance &lt;- (n-1)^2/n * variance jackknife.stderr &lt;- sqrt(jackknife.variance) return(jackknife.stderr) } some_normals &lt;- rnorm(100,mean=7,sd=5) mean(some_normals) ## [1] 7.135427 (formula_se_of_mean &lt;- sd(some_normals)/sqrt(length(some_normals))) ## [1] 0.
     
   </div>
   <p class="read-more">
