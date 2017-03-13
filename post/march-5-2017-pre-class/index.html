@@ -221,9 +221,9 @@
 
 some_normals &lt;- rnorm(100,mean=7,sd=5)
 mean(some_normals)</code></pre>
-<pre><code>## [1] 7.064009</code></pre>
+<pre><code>## [1] 7.513658</code></pre>
 <pre class="r"><code>(formula_se_of_mean &lt;- sd(some_normals)/sqrt(length(some_normals)))</code></pre>
-<pre><code>## [1] 0.456113</code></pre>
+<pre><code>## [1] 0.476442</code></pre>
 <pre class="r"><code>all.equal(formula_se_of_mean,mean.jackknife(some_normals))</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 
@@ -235,6 +235,9 @@ mean(some_normals)</code></pre>
 <div class="container">
   <nav>
   <ul class="pager">
+    
+    <li class="previous"><a href="https://zhangpa.github.io/post/jackknife_function_R/"><span
+      aria-hidden="true">&larr;</span> Untitled</a></li>
     
 
     

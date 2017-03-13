@@ -1,0 +1,285 @@
+---
+title: "Untitled"
+author: ""
+date: "March 7, 2017"
+output: html_document
+---
+
+
+##Jackknife for Gamma Parameters
+
+Recall our friend the method of moments estimator:
+
+```{r, eval=FALSE}
+gamma.est <- function(the_data) {
+  m <- mean(the_data)
+  v <- var(the_data)
+  a <- m^2/v
+  s <- v/m
+  return(c(a=a,s=s))
+}
+```
+
+
+###Jackknife for Gamma Parameters Function
+
+Write a function called `gamma.jackknife` that takes argument `a_vector` and returns jackknife standard error estimates on the gamma parameters. 
+
+```{r, eval=FALSE }
+gamma.jackknife <- function(a_vector) {
+  n <- length(a_vector)
+  
+  # Matrix of gamma estimates using omitted data
+  theta.i <- matrix(nrow =n, ncol = 2)
+  for (row in 1:n) {
+    theta.i[row,] <- gamma.est(a_vector[-row])
+  }
+  
+  # Calculates variance of estimates using omitted data
+  variance <- apply(theta.i, 2, var)
+  
+  # Jackknife estimatation for variance and standard error
+  jackknife.variance <- (n-1)^2/n * variance
+  jackknife.stderrs <- sqrt(jackknife.variance)
+  return(jackknife.stderrs)
+}
+```
+
+
+
+###Jackknife for Gamma Parameters Example
+
+```{r, eval=FALSE}
+input <- rgamma(1000, shape=0.1, scale=10)
+gamma.est(input)
+gamma.jackknife(input)
+```
+
+
+
+##Jackknife for linear regression coefficients
+
+Write a function called `jackknife.lm` that takes arguments `df`, `formula` and `p` and returns jackknife standard error estimates on the coefficients of a linear regression model. 
+
+```{r, eval=FALSE}
+jackknife.lm <- function(df,formula,p) {
+  n <- nrow(df)
+  formula <- as.formula(formula)
+  
+  # Matrix of coefficients using omitted data
+  theta.i <- matrix(nrow = n, ncol = p)
+  for (row in 1:n) {
+    theta.i[row,] <- lm(formula, data = df[-row,])$coefficients
+  }
+  
+  # Calculates variance of estimates using omitted data
+  variance <- apply(theta.i, 2, var)
+  
+  # Jackknife estimatation for variance and standard error
+  jackknife.variance <- (n-1)^2/n * variance
+  jackknife.stderr <- sqrt(jackknife.variance)
+  return(jackknife.stderr)
+}
+```
+
+
+
+###Jackknife for linear regression coefficients Example
+
+
+```{r, eval=FALSE}
+output <- 1.2 + 0.6*input +  rnorm(1000, 0, 2.1)
+data <- data.frame(output,input)
+my.lm <- lm(output~input, data=data)
+# coefficients(my.lm)
+# "Official" standard errors
+sqrt(diag(vcov(my.lm)))
+# Jackknife standard errors
+jackknife.lm(df=data,formula="output~input",p=2)
+```
+
+
+
+##Refactoring the Jackknife
+
+
+- Omitting one point or row is a common sub-task
+
+- The general pattern:
+
+```
+figure out the size of the data
+for each case
+   omit that case
+   repeat some estimation and get a vector of numbers
+take variances across cases
+scale up variances
+take the square roots
+```
+
+- Refactor by extracting the common "omit one" operation
+
+- Refactor by defining a general "jackknife" operation
+
+
+
+###The Common Operation
+
+
+- _Problem_: Omit one particular data point from a larger structure
+
+- _Difficulty_: Do we need a comma in the index or not?
+
+- _Solution_: Works for vectors, lists, 1D and 2D arrays, matrices, data frames:
+
+
+
+## Goal: 
+
+
+- Make the function select the correct dimensions
+    - length for a 1d object
+    - number of rows for 2d
+- Write a function `omit.case` that omits a point given the data and returns the data minus that point. Make sure it can handle higher dimensions. 
+
+```{r, eval=FALSE}
+      omit.case <- function(the_data,omitted_point) {
+        # Dim of vector is NULL ==> dim(1:4)
+        # Dim of 1D array is vector with length 1 ==> dim(array(1:4), c(2,2)) 
+        if (length(dim(the_data) == 1 || is.null(dim(the_data)))) {
+          return(the_data[-omitted_point])
+        } else {
+          return(the_data[-omitted_point,])
+        }
+        
+      }
+```
+
+- Write a function `omit_and_est` that takes the data with an omitted point and returns whatever function your estimator does. 
+
+
+```{r, eval=FALSE}
+jackknife <- function(estimator,the_data) {
+  # Define n to be lenth or number of rows here
+  if (length(dim(the_data)==1) || is.null(dim(the_data))) {
+    n <- length(the_data)
+  } else {
+    n <- nrow(the_data)
+  }
+  
+  omit_and_est <- function(omit) {
+    estimator(omit.case(the_data, omit))
+  }
+  
+  jackknife.ests <- matrix(sapply(1:n, omit_and_est), ncol=n)
+  var.of.reestimates <- apply(jackknife.ests,1,var)
+  jackknife.var <- ((n-1)^2/n)* var.of.reestimates
+  jackknife.stderr <- sqrt(jackknife.var)
+  return(jackknife.stderr)
+}
+```
+
+
+
+---
+
+###It works
+
+
+```{r, eval=FALSE}
+some_normals <- rnorm(100,mean=7,sd=5)
+mean.jackknife <- function(a_vector) {
+  n <- length(a_vector)
+  theta.i <- vector(length = n)
+  for (i in 1:n) {
+    theta.i[i] <- mean(a_vector[-i])
+  }
+  variance <- var(theta.i)
+  jackknife.variance <- (n-1)^2/n * variance
+  jackknife.stderr <- sqrt(jackknife.variance)
+  return(jackknife.stderr)
+}
+# jackknife(estimator=mean,the_data=some_normals)
+all.equal(jackknife(estimator=mean,the_data=some_normals),
+          mean.jackknife(some_normals))
+```
+
+---
+
+
+
+```{r, eval=FALSE}
+all.equal(jackknife(estimator=gamma.est,the_data=data$input),
+          gamma.jackknife(data$input))
+```
+
+---
+
+
+```{r, eval=FALSE}
+all.equal(jackknife(estimator=gamma.est,the_data=data$input),
+          gamma.jackknife(data$input), check.names=FALSE)
+```
+
+
+```{r, eval=FALSE}
+est.coefs <- function(the_data) {
+  return(lm(output~input,data=the_data)$coefficients)
+}
+# est.coefs(data)
+all.equal(est.coefs(data), coefficients(my.lm))
+```
+
+---
+
+
+```{r, eval=FALSE}
+# jackknife(estimator=est.coefs,the_data=data)
+all.equal(jackknife(estimator=est.coefs,the_data=data),
+          jackknife.lm(df=data,formula="output~input",p=2))
+```
+
+
+##Further Refactoring of jackknife()
+
+
+The code for `jackknife()` is still a bit clunky:
+- Ugly `if-else` for finding `n`
+- Bit at the end for scaling variances down to standard errors
+
+- write a function that calculates the `n` needed for the above code:
+
+    ```{r, eval=FALSE}
+      data_size <- function(the_data) {
+        if (length(dim(the_data)==1) || is.null(dim(the_data))) {
+          return(length(the_data))
+        } else {
+          return(nrow(the_data))
+        }
+      }
+    ```
+- Write a funcrion that calculate the variance of all the estimates and returns the standard error
+```{r, eval=FALSE}
+scale_and_sqrt_vars <- function(jackknife.ests,n) {
+  var.of.reestimates <- apply(jackknife.ests,1,var)
+  jackknife.var <- ((n-1)^2/n)* var.of.reestimates
+  jackknife.stderr <- sqrt(jackknife.var)
+  return(jackknife.stderr)
+}
+```
+
+
+
+###Now invoke those functions
+
+```{r, eval=FALSE}
+jackknife <- function(estimator,the_data) {
+  n <- data_size(the_data)
+  omit_and_est <- function(omit) {
+    estimator(omit.case(the_data,omit))
+  }
+  jackknife.ests <- matrix(sapply(1:n, omit_and_est), ncol=n)
+  return(scale_and_sqrt_vars(jackknife.ests,n))
+}
+```
+

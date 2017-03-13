@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.19" />
+  <meta name="author" content="Patrick M Zhang">
+  <meta name="description" content="Undergraduate Student">
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/highlight.min.css">
+    
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/academicons.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700|Merriweather|Roboto+Mono">
+  <link rel="stylesheet" href="/css/hugo-academic.css">
+  
+
+  <link rel="alternate" href="https://zhangpa.github.io/index.xml" type="application/rss+xml" title="Patrick Zhang">
+  <link rel="feed" href="https://zhangpa.github.io/index.xml" type="application/rss+xml" title="Patrick Zhang">
+
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/apple-touch-icon.png">
+
+  <link rel="canonical" href="https://zhangpa.github.io/post/jackknife_function_R/">
+
+  
+
+  <title>Untitled | Patrick Zhang</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Patrick Zhang</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#teaching">
+            
+            <span>Teaching</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+          </a>
+        </li>
+
+        
+        
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+  <div class="article-container">
+    <h1 itemprop="name">Untitled</h1>
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Sat, Feb 10, 1017
+    </time>
+  </span>
+
+  
+
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhangpa.github.io%2fpost%2fjackknife_function_R%2f"
+         target="_blank">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Untitled&amp;url=https%3a%2f%2fzhangpa.github.io%2fpost%2fjackknife_function_R%2f"
+         target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fzhangpa.github.io%2fpost%2fjackknife_function_R%2f&amp;title=Untitled"
+         target="_blank">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fzhangpa.github.io%2fpost%2fjackknife_function_R%2f&amp;title=Untitled"
+         target="_blank">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Untitled&amp;body=https%3a%2f%2fzhangpa.github.io%2fpost%2fjackknife_function_R%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    <div class="article-style" itemprop="articleBody">
+      <!-- BLOGDOWN-HEAD -->
+<!-- /BLOGDOWN-HEAD -->
+
+<!-- BLOGDOWN-BODY-BEFORE -->
+<!-- /BLOGDOWN-BODY-BEFORE -->
+<div id="jackknife-for-gamma-parameters" class="section level2">
+<h2>Jackknife for Gamma Parameters</h2>
+<p>Recall our friend the method of moments estimator:</p>
+<pre class="r"><code>gamma.est &lt;- function(the_data) {
+  m &lt;- mean(the_data)
+  v &lt;- var(the_data)
+  a &lt;- m^2/v
+  s &lt;- v/m
+  return(c(a=a,s=s))
+}</code></pre>
+<div id="jackknife-for-gamma-parameters-function" class="section level3">
+<h3>Jackknife for Gamma Parameters Function</h3>
+<p>Write a function called <code>gamma.jackknife</code> that takes argument <code>a_vector</code> and returns jackknife standard error estimates on the gamma parameters.</p>
+<pre class="r"><code>gamma.jackknife &lt;- function(a_vector) {
+  n &lt;- length(a_vector)
+  
+  # Matrix of gamma estimates using omitted data
+  theta.i &lt;- matrix(nrow =n, ncol = 2)
+  for (row in 1:n) {
+    theta.i[row,] &lt;- gamma.est(a_vector[-row])
+  }
+  
+  # Calculates variance of estimates using omitted data
+  variance &lt;- apply(theta.i, 2, var)
+  
+  # Jackknife estimatation for variance and standard error
+  jackknife.variance &lt;- (n-1)^2/n * variance
+  jackknife.stderrs &lt;- sqrt(jackknife.variance)
+  return(jackknife.stderrs)
+}</code></pre>
+</div>
+<div id="jackknife-for-gamma-parameters-example" class="section level3">
+<h3>Jackknife for Gamma Parameters Example</h3>
+<pre class="r"><code>input &lt;- rgamma(1000, shape=0.1, scale=10)
+gamma.est(input)
+gamma.jackknife(input)</code></pre>
+</div>
+</div>
+<div id="jackknife-for-linear-regression-coefficients" class="section level2">
+<h2>Jackknife for linear regression coefficients</h2>
+<p>Write a function called <code>jackknife.lm</code> that takes arguments <code>df</code>, <code>formula</code> and <code>p</code> and returns jackknife standard error estimates on the coefficients of a linear regression model.</p>
+<pre class="r"><code>jackknife.lm &lt;- function(df,formula,p) {
+  n &lt;- nrow(df)
+  formula &lt;- as.formula(formula)
+  
+  # Matrix of coefficients using omitted data
+  theta.i &lt;- matrix(nrow = n, ncol = p)
+  for (row in 1:n) {
+    theta.i[row,] &lt;- lm(formula, data = df[-row,])$coefficients
+  }
+  
+  # Calculates variance of estimates using omitted data
+  variance &lt;- apply(theta.i, 2, var)
+  
+  # Jackknife estimatation for variance and standard error
+  jackknife.variance &lt;- (n-1)^2/n * variance
+  jackknife.stderr &lt;- sqrt(jackknife.variance)
+  return(jackknife.stderr)
+}</code></pre>
+<div id="jackknife-for-linear-regression-coefficients-example" class="section level3">
+<h3>Jackknife for linear regression coefficients Example</h3>
+<pre class="r"><code>output &lt;- 1.2 + 0.6*input +  rnorm(1000, 0, 2.1)
+data &lt;- data.frame(output,input)
+my.lm &lt;- lm(output~input, data=data)
+# coefficients(my.lm)
+# &quot;Official&quot; standard errors
+sqrt(diag(vcov(my.lm)))
+# Jackknife standard errors
+jackknife.lm(df=data,formula=&quot;output~input&quot;,p=2)</code></pre>
+</div>
+</div>
+<div id="refactoring-the-jackknife" class="section level2">
+<h2>Refactoring the Jackknife</h2>
+<ul>
+<li><p>Omitting one point or row is a common sub-task</p></li>
+<li><p>The general pattern:</p></li>
+</ul>
+<pre><code>figure out the size of the data
+for each case
+   omit that case
+   repeat some estimation and get a vector of numbers
+take variances across cases
+scale up variances
+take the square roots</code></pre>
+<ul>
+<li><p>Refactor by extracting the common “omit one” operation</p></li>
+<li><p>Refactor by defining a general “jackknife” operation</p></li>
+</ul>
+<div id="the-common-operation" class="section level3">
+<h3>The Common Operation</h3>
+<ul>
+<li><p><em>Problem</em>: Omit one particular data point from a larger structure</p></li>
+<li><p><em>Difficulty</em>: Do we need a comma in the index or not?</p></li>
+<li><p><em>Solution</em>: Works for vectors, lists, 1D and 2D arrays, matrices, data frames:</p></li>
+</ul>
+</div>
+</div>
+<div id="goal" class="section level2">
+<h2>Goal:</h2>
+<ul>
+<li>Make the function select the correct dimensions
+<ul>
+<li>length for a 1d object</li>
+<li>number of rows for 2d</li>
+</ul></li>
+<li>Write a function <code>omit.case</code> that omits a point given the data and returns the data minus that point. Make sure it can handle higher dimensions.</li>
+</ul>
+<pre class="r"><code>      omit.case &lt;- function(the_data,omitted_point) {
+        # Dim of vector is NULL ==&gt; dim(1:4)
+        # Dim of 1D array is vector with length 1 ==&gt; dim(array(1:4), c(2,2)) 
+        if (length(dim(the_data) == 1 || is.null(dim(the_data)))) {
+          return(the_data[-omitted_point])
+        } else {
+          return(the_data[-omitted_point,])
+        }
+        
+      }</code></pre>
+<ul>
+<li>Write a function <code>omit_and_est</code> that takes the data with an omitted point and returns whatever function your estimator does.</li>
+</ul>
+<pre class="r"><code>jackknife &lt;- function(estimator,the_data) {
+  # Define n to be lenth or number of rows here
+  if (length(dim(the_data)==1) || is.null(dim(the_data))) {
+    n &lt;- length(the_data)
+  } else {
+    n &lt;- nrow(the_data)
+  }
+  
+  omit_and_est &lt;- function(omit) {
+    estimator(omit.case(the_data, omit))
+  }
+  
+  jackknife.ests &lt;- matrix(sapply(1:n, omit_and_est), ncol=n)
+  var.of.reestimates &lt;- apply(jackknife.ests,1,var)
+  jackknife.var &lt;- ((n-1)^2/n)* var.of.reestimates
+  jackknife.stderr &lt;- sqrt(jackknife.var)
+  return(jackknife.stderr)
+}</code></pre>
+<hr />
+<div id="it-works" class="section level3">
+<h3>It works</h3>
+<pre class="r"><code>some_normals &lt;- rnorm(100,mean=7,sd=5)
+mean.jackknife &lt;- function(a_vector) {
+  n &lt;- length(a_vector)
+  theta.i &lt;- vector(length = n)
+  for (i in 1:n) {
+    theta.i[i] &lt;- mean(a_vector[-i])
+  }
+  variance &lt;- var(theta.i)
+  jackknife.variance &lt;- (n-1)^2/n * variance
+  jackknife.stderr &lt;- sqrt(jackknife.variance)
+  return(jackknife.stderr)
+}
+# jackknife(estimator=mean,the_data=some_normals)
+all.equal(jackknife(estimator=mean,the_data=some_normals),
+          mean.jackknife(some_normals))</code></pre>
+<hr />
+<pre class="r"><code>all.equal(jackknife(estimator=gamma.est,the_data=data$input),
+          gamma.jackknife(data$input))</code></pre>
+<hr />
+<pre class="r"><code>all.equal(jackknife(estimator=gamma.est,the_data=data$input),
+          gamma.jackknife(data$input), check.names=FALSE)</code></pre>
+<pre class="r"><code>est.coefs &lt;- function(the_data) {
+  return(lm(output~input,data=the_data)$coefficients)
+}
+# est.coefs(data)
+all.equal(est.coefs(data), coefficients(my.lm))</code></pre>
+<hr />
+<pre class="r"><code># jackknife(estimator=est.coefs,the_data=data)
+all.equal(jackknife(estimator=est.coefs,the_data=data),
+          jackknife.lm(df=data,formula=&quot;output~input&quot;,p=2))</code></pre>
+</div>
+</div>
+<div id="further-refactoring-of-jackknife" class="section level2">
+<h2>Further Refactoring of jackknife()</h2>
+<p>The code for <code>jackknife()</code> is still a bit clunky: - Ugly <code>if-else</code> for finding <code>n</code> - Bit at the end for scaling variances down to standard errors</p>
+<ul>
+<li><p>write a function that calculates the <code>n</code> needed for the above code:</p>
+<pre class="r"><code>  data_size &lt;- function(the_data) {
+    if (length(dim(the_data)==1) || is.null(dim(the_data))) {
+      return(length(the_data))
+    } else {
+      return(nrow(the_data))
+    }
+  }</code></pre></li>
+<li><p>Write a funcrion that calculate the variance of all the estimates and returns the standard error</p></li>
+</ul>
+<pre class="r"><code>scale_and_sqrt_vars &lt;- function(jackknife.ests,n) {
+  var.of.reestimates &lt;- apply(jackknife.ests,1,var)
+  jackknife.var &lt;- ((n-1)^2/n)* var.of.reestimates
+  jackknife.stderr &lt;- sqrt(jackknife.var)
+  return(jackknife.stderr)
+}</code></pre>
+<div id="now-invoke-those-functions" class="section level3">
+<h3>Now invoke those functions</h3>
+<pre class="r"><code>jackknife &lt;- function(estimator,the_data) {
+  n &lt;- data_size(the_data)
+  omit_and_est &lt;- function(omit) {
+    estimator(omit.case(the_data,omit))
+  }
+  jackknife.ests &lt;- matrix(sapply(1:n, omit_and_est), ncol=n)
+  return(scale_and_sqrt_vars(jackknife.ests,n))
+}</code></pre>
+</div>
+</div>
+
+    </div>
+  </div>
+
+</article>
+
+<div class="container">
+  <nav>
+  <ul class="pager">
+    
+
+    
+    <li class="next"><a href="https://zhangpa.github.io/post/march-5-2017-pre-class/">March 5, 2017 - Pre-Class <span
+      aria-hidden="true">&rarr;</span></a></li>
+    
+  </ul>
+</nav>
+
+</div>
+
+<div class="article-container">
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+      
+      
+      if (window.location.hostname == "localhost")
+                return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'php2560-zhang';
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017 &middot; 
+
+      Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
+      theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
+    <script src="/js/jquery-1.12.3.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/isotope.pkgd.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+
+    
+    
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    <script async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+    
+
+  </body>
+</html>
+
