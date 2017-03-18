@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Jackknife Estimator"
 author: ""
 date: "March 7, 2017"
 output: html_document

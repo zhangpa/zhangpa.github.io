@@ -190,7 +190,37 @@
 
     <div class="article-style"><p>
       
-      mean.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) # Vector of means using omitted data theta.i &lt;- vector(length = n) for (i in 1:n) { theta.i[i] &lt;- mean(a_vector[-i]) } # Calculates variance of mean estimates using omitted data variance &lt;- var(theta.i) # Jackknife estimatation for variance and standard error jackknife.variance &lt;- (n-1)^2/n * variance jackknife.stderr &lt;- sqrt(jackknife.variance) return(jackknife.stderr) } some_normals &lt;- rnorm(100,mean=7,sd=5) mean(some_normals) ## [1] 7.135427 (formula_se_of_mean &lt;- sd(some_normals)/sqrt(length(some_normals))) ## [1] 0.
+      mean.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) # Vector of means using omitted data theta.i &lt;- vector(length = n) for (i in 1:n) { theta.i[i] &lt;- mean(a_vector[-i]) } # Calculates variance of mean estimates using omitted data variance &lt;- var(theta.i) # Jackknife estimatation for variance and standard error jackknife.variance &lt;- (n-1)^2/n * variance jackknife.stderr &lt;- sqrt(jackknife.variance) return(jackknife.stderr) } some_normals &lt;- rnorm(100,mean=7,sd=5) mean(some_normals) ## [1] 7.780643 (formula_se_of_mean &lt;- sd(some_normals)/sqrt(length(some_normals))) ## [1] 0.
+      
+    </p></div>
+  </div>
+  
+  <div>
+    
+    <h2><a href="https://zhangpa.github.io/post/jackknife_function_R/">Jackknife Estimator</a></h2>
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Sat, Feb 10, 1017
+    </time>
+  </span>
+
+  
+
+  
+
+  
+
+</div>
+
+    <div class="article-style"><p>
+      
+      Jackknife for Gamma Parameters Recall our friend the method of moments estimator:
+gamma.est &lt;- function(the_data) { m &lt;- mean(the_data) v &lt;- var(the_data) a &lt;- m^2/v s &lt;- v/m return(c(a=a,s=s)) } Jackknife for Gamma Parameters Function Write a function called gamma.jackknife that takes argument a_vector and returns jackknife standard error estimates on the gamma parameters.
+gamma.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) # Matrix of gamma estimates using omitted data theta.i &lt;- matrix(nrow =n, ncol = 2) for (row in 1:n) { theta.
       
     </p></div>
   </div>
@@ -220,36 +250,6 @@
       
       Suppose you have a bankroll of $1000 and make bets of $100 on a fair game. By simulating the outcome directly for at most 5000 iterations of the game (or hands), estimate:
 the probability that you have “busted” (lost all your money) by the time you have placed your one hundredth bet. the probability that you have busted by the time you have placed your five hundredth bet by simulating the outcome directly.
-      
-    </p></div>
-  </div>
-  
-  <div>
-    
-    <h2><a href="https://zhangpa.github.io/post/jackknife_function_R/">Untitled</a></h2>
-    
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-      Sat, Feb 10, 1017
-    </time>
-  </span>
-
-  
-
-  
-
-  
-
-</div>
-
-    <div class="article-style"><p>
-      
-      Jackknife for Gamma Parameters Recall our friend the method of moments estimator:
-gamma.est &lt;- function(the_data) { m &lt;- mean(the_data) v &lt;- var(the_data) a &lt;- m^2/v s &lt;- v/m return(c(a=a,s=s)) } Jackknife for Gamma Parameters Function Write a function called gamma.jackknife that takes argument a_vector and returns jackknife standard error estimates on the gamma parameters.
-gamma.jackknife &lt;- function(a_vector) { n &lt;- length(a_vector) # Matrix of gamma estimates using omitted data theta.i &lt;- matrix(nrow =n, ncol = 2) for (row in 1:n) { theta.
       
     </p></div>
   </div>
